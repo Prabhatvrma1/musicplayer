@@ -116,6 +116,51 @@ html, body {
     box-shadow: 0 0 6px rgba(34, 197, 94, 0.8);
 }
 
+.top-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shortcuts-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(22, 16, 24, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 5px 12px;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.shortcuts-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.shortcuts-btn:active {
+    transform: scale(0.96);
+}
+
+.shortcuts-btn kbd, .shortcut-item kbd {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 0.72rem;
+    font-family: monospace;
+    font-weight: 600;
+    color: #ffffff;
+}
+
 .spotify-badge {
     display: inline-flex;
     align-items: center;
@@ -178,6 +223,11 @@ html, body {
     padding: 8px 20px 8px 10px;
     gap: 14px;
     box-sizing: border-box;
+    transition: transform 0.18s ease;
+}
+
+.player-pill.key-active {
+    transform: scale(1.02);
 }
 
 /* ===== CIRCULAR SNACK / ARTWORK ===== */
@@ -376,6 +426,130 @@ html, body {
     transform: scale(0.94);
 }
 
+/* ===== HUD FEEDBACK PILL (SHORTCUT TOAST) ===== */
+.hud-pill {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
+    background: rgba(18, 12, 16, 0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 9999px;
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hud-pill.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.hud-icon {
+    font-size: 1.1rem;
+}
+
+/* ===== SHORTCUTS MODAL ===== */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.shortcuts-modal {
+    background: rgba(26, 18, 24, 0.92);
+    backdrop-filter: blur(36px) saturate(150%);
+    -webkit-backdrop-filter: blur(36px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    padding: 22px 26px;
+    width: 100%;
+    max-width: 460px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    transform: scale(0.92);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-backdrop.open .shortcuts-modal {
+    transform: scale(1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.btn-close-modal {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.15s ease;
+}
+
+.btn-close-modal:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.shortcut-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
 /* ===== ANIMATIONS ===== */
 @keyframes ping {
     75%, 100% {
@@ -402,9 +576,9 @@ html, body {
         padding: 0 4px;
     }
 
-    .status-pill, .spotify-badge {
-        font-size: 0.75rem;
-        padding: 4px 10px;
+    .status-pill, .shortcuts-btn, .spotify-badge {
+        font-size: 0.72rem;
+        padding: 4px 8px;
     }
 
     .player-pill {

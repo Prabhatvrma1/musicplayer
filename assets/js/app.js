@@ -15,6 +15,7 @@ const PLAYLIST = [
 ];
 
 // ===== DOM ELEMENTS =====
+const playerPill = document.getElementById('playerPill');
 const songTitle = document.getElementById('songTitle');
 const songArtist = document.getElementById('songArtist');
 const timeLabel = document.getElementById('timeLabel');
@@ -27,13 +28,23 @@ const btnNext = document.getElementById('btnNext');
 const iconPlay = document.getElementById('iconPlay');
 const iconPause = document.getElementById('iconPause');
 
+// Shortcuts & Modal Elements
+const btnShortcuts = document.getElementById('btnShortcuts');
+const btnCloseModal = document.getElementById('btnCloseModal');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const hudPill = document.getElementById('hudPill');
+const hudIcon = document.getElementById('hudIcon');
+const hudText = document.getElementById('hudText');
+
 // ===== STATE =====
 let currentIndex = 0;
 let isPlaying = false;
+let isMuted = false;
 let embedController = null;
-let currentDuration = 240; // fallback in seconds
+let currentDuration = 240; // duration in seconds
 let currentPosition = 0;
 let progressTimer = null;
+let hudTimeout = null;
 
 // ===== INITIALIZE SPOTIFY IFRAME API =====
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
@@ -64,7 +75,7 @@ window.onSpotifyIframeApiReady = (IFrameAPI) => {
 };
 
 // ===== LOAD TRACK =====
-function loadTrack(index, playImmediate = true) {
+function loadTrack(index, playImmediate = true, showHud = true) {
     if (index < 0) index = PLAYLIST.length - 1;
     if (index >= PLAYLIST.length) index = 0;
     currentIndex = index;
@@ -74,6 +85,10 @@ function loadTrack(index, playImmediate = true) {
     songArtist.textContent = track.artist;
     currentPosition = 0;
     updateUIProgress(0, currentDuration);
+
+    if (showHud) {
+        showHUD('🎵', track.title);
+    }
 
     if (embedController) {
         embedController.loadUri(track.uri);
@@ -93,8 +108,9 @@ function loadTrack(index, playImmediate = true) {
     }
 }
 
-// ===== TOGGLE PLAY =====
+// ===== TOGGLE PLAY / PAUSE =====
 function togglePlay() {
+    triggerPillPulse();
     if (embedController) {
         embedController.togglePlay();
     } else {
@@ -106,6 +122,65 @@ function togglePlay() {
             clearInterval(progressTimer);
         }
     }
+    showHUD(isPlaying ? '▶' : '⏸', isPlaying ? 'Play' : 'Pause');
+}
+
+// ===== SEEK FORWARD / BACKWARD =====
+function seekRelative(deltaSeconds) {
+    const newPos = Math.max(0, Math.min(currentPosition + deltaSeconds, currentDuration));
+    currentPosition = newPos;
+    updateUIProgress(currentPosition, currentDuration);
+    
+    if (embedController) {
+        embedController.seek(Math.floor(newPos));
+    }
+    
+    const icon = deltaSeconds > 0 ? '⏩' : '⏪';
+    const text = deltaSeconds > 0 ? `+${deltaSeconds}s` : `${deltaSeconds}s`;
+    showHUD(icon, text);
+    triggerPillPulse();
+}
+
+// ===== RANDOM / SHUFFLE =====
+function playRandom() {
+    let nextIndex;
+    do {
+        nextIndex = Math.floor(Math.random() * PLAYLIST.length);
+    } while (nextIndex === currentIndex && PLAYLIST.length > 1);
+    
+    showHUD('🔀', 'Shuffle');
+    loadTrack(nextIndex, true, false);
+}
+
+// ===== TOGGLE MUTE =====
+function toggleMute() {
+    isMuted = !isMuted;
+    showHUD(isMuted ? '🔇' : '🔊', isMuted ? 'Muted' : 'Unmuted');
+}
+
+// ===== HUD TOAST NOTIFICATION =====
+function showHUD(icon, text) {
+    if (!hudPill) return;
+    hudIcon.textContent = icon;
+    hudText.textContent = text;
+    hudPill.classList.add('show');
+
+    clearTimeout(hudTimeout);
+    hudTimeout = setTimeout(() => {
+        hudPill.classList.remove('show');
+    }, 1200);
+}
+
+function triggerPillPulse() {
+    if (!playerPill) return;
+    playerPill.classList.add('key-active');
+    setTimeout(() => playerPill.classList.remove('key-active'), 180);
+}
+
+// ===== MODAL TOGGLE =====
+function toggleShortcutsModal() {
+    if (!modalBackdrop) return;
+    modalBackdrop.classList.toggle('open');
 }
 
 // ===== SIMULATED PROGRESS FOR LOCAL PREVIEW =====
@@ -115,7 +190,7 @@ function startSimulatedProgress() {
         if (!isPlaying) return;
         currentPosition += 1;
         if (currentPosition >= currentDuration) {
-            loadTrack(currentIndex + 1, true);
+            loadTrack(currentIndex + 1, true, false);
         } else {
             updateUIProgress(currentPosition, currentDuration);
         }
@@ -147,7 +222,7 @@ function updateUIProgress(pos, dur) {
     timeLabel.textContent = `${formatTime(pos)} / ${formatTime(dur)}`;
 }
 
-// ===== SEEK =====
+// ===== SEEK CLICK =====
 function seek(e) {
     const rect = progressBarWrap.getBoundingClientRect();
     const clientX = e.clientX ?? (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
@@ -165,36 +240,89 @@ function seek(e) {
 
 // ===== EVENT LISTENERS =====
 function init() {
-    loadTrack(0, false);
+    loadTrack(0, false, false);
 
     btnPlay.addEventListener('click', togglePlay);
     btnPrev.addEventListener('click', () => loadTrack(currentIndex - 1, true));
     btnNext.addEventListener('click', () => loadTrack(currentIndex + 1, true));
 
+    // Modal Events
+    if (btnShortcuts) btnShortcuts.addEventListener('click', toggleShortcutsModal);
+    if (btnCloseModal) btnCloseModal.addEventListener('click', () => modalBackdrop.classList.remove('open'));
+    if (modalBackdrop) {
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) modalBackdrop.classList.remove('open');
+        });
+    }
+
     // Seek Click
     progressBarWrap.addEventListener('click', seek);
 
-    // Keyboard Shortcuts
+    // ===== KEYBOARD SHORTCUTS =====
     document.addEventListener('keydown', (e) => {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
         switch (e.code) {
+            // Space: Play / Pause
             case 'Space':
                 e.preventDefault();
                 togglePlay();
                 break;
+
+            // Arrow Right / L: Seek Forward (+5s)
             case 'ArrowRight':
+            case 'KeyL':
                 e.preventDefault();
-                if (embedController) embedController.seek(Math.floor(currentPosition + 5));
+                seekRelative(e.shiftKey ? 10 : 5);
                 break;
+
+            // Arrow Left / J: Seek Backward (-5s)
             case 'ArrowLeft':
+            case 'KeyJ':
                 e.preventDefault();
-                if (embedController) embedController.seek(Math.max(0, Math.floor(currentPosition - 5)));
+                seekRelative(e.shiftKey ? -10 : -5);
                 break;
+
+            // N or >: Next Song
             case 'KeyN':
+            case 'Period':
+                e.preventDefault();
                 loadTrack(currentIndex + 1, true);
                 break;
+
+            // P or <: Previous Song
             case 'KeyP':
+            case 'Comma':
+                e.preventDefault();
                 loadTrack(currentIndex - 1, true);
+                break;
+
+            // R: Shuffle / Random
+            case 'KeyR':
+                e.preventDefault();
+                playRandom();
+                break;
+
+            // M: Mute
+            case 'KeyM':
+                e.preventDefault();
+                toggleMute();
+                break;
+
+            // ? or Slash or H: Toggle Shortcuts Modal
+            case 'Slash':
+            case 'KeyH':
+                if (e.shiftKey || e.code === 'KeyH') {
+                    e.preventDefault();
+                    toggleShortcutsModal();
+                }
+                break;
+
+            // Escape: Close Modal
+            case 'Escape':
+                if (modalBackdrop && modalBackdrop.classList.contains('open')) {
+                    modalBackdrop.classList.remove('open');
+                }
                 break;
         }
     });

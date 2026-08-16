@@ -26,13 +26,21 @@ A minimalist, high-aesthetic web music player designed with smooth video looping
 - 🔮 **Glassmorphism Frosted Pill Player**: Sleek, compact capsule with frosted glass blur effect.
 - 🥘 **Authentic Artwork**: Circular snack/chaat album icon.
 - 📻 **Full Audio Playback**: Track skipping, seeking/scrubbing timeline, real-time timestamps, and keyboard controls.
+- ⌨️ **Keyboard Shortcuts & HUD**: Press shortcuts anytime with on-screen toast feedback.
 - 🔗 **Spotify Link**: Quick-access badge linking to the curated Spotify playlist.
 
 ## ⌨️ Keyboard Shortcuts
-- `Space`: Play / Pause
-- `→` / `←`: Seek forward / backward by 5 seconds
-- `N`: Next track
-- `P`: Previous track
+| Key | Action |
+| --- | --- |
+| `Space` | Play / Pause |
+| `→` or `L` | Seek Forward (+5s / +10s with Shift) |
+| `←` or `J` | Seek Backward (-5s / -10s with Shift) |
+| `N` or `>` | Next track |
+| `P` or `<` | Previous track |
+| `R` | Shuffle / Random song |
+| `M` | Mute / Unmute |
+| `?` or `H` | Toggle Keyboard Shortcuts Help Modal |
+| `Esc` | Close Modal |
 
 ## 🚀 Getting Started
 Simply serve the folder using any static HTTP server:
