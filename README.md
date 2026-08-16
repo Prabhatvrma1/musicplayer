@@ -1,6 +1,6 @@
 # चटपटे गाने — Bollywood Music Player 🎵
 
-A minimalist, high-aesthetic web music player designed with smooth video looping backgrounds and glassmorphism UI inspired by [saloon.wtf](https://saloon.wtf/).
+A minimalist, high-aesthetic web music player.
 
 ## 📁 Project Structure
 ```text
