@@ -230,15 +230,16 @@ html, body {
     transform: scale(1.02);
 }
 
-/* ===== CIRCULAR SNACK / ARTWORK ===== */
+/* ===== SPOTIFY COVER / ARTWORK ===== */
 .player-art-wrap {
     width: 48px;
     height: 48px;
     min-width: 48px;
-    border-radius: 50%;
-    background: #fff8ee;
+    border-radius: 10px;
+    background: #18121a;
     overflow: hidden;
-    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
