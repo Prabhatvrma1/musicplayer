@@ -102,6 +102,9 @@
         </div>
     </div>
 
+    <!-- Hidden Native Audio Element for Full Length Streaming -->
+    <audio id="audioPlayer" preload="auto"></audio>
+
     <!-- HUD Feedback Pill (shows action when shortcuts are pressed) -->
     <div class="hud-pill" id="hudPill">
         <span class="hud-icon" id="hudIcon">▶</span>
@@ -152,11 +155,6 @@
         </div>
     </div>
 
-    <!-- Hidden Spotify IFrame API Controller Root -->
-    <div id="spotify-embed-root" style="position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none;"></div>
-
-    <!-- Spotify Iframe API -->
-    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>
