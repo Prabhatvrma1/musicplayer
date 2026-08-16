@@ -8,14 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
     <!-- Fullscreen Video Background Scene -->
     <div class="scene-container">
-        <video class="scene-bg" autoplay loop muted playsinline poster="bg_clean.png">
-            <source src="new_background.mp4" type="video/mp4">
+        <video class="scene-bg" autoplay loop muted playsinline poster="assets/images/bg_clean.png">
+            <source src="assets/video/new_background.mp4" type="video/mp4">
         </video>
 
         <!-- Ambient Lighting Overlay -->
@@ -47,7 +47,7 @@
             
             <!-- Circular Chaat Artwork -->
             <div class="player-art-wrap">
-                <img src="panipuri.png" alt="Song Artwork" class="player-art-img" id="playerArtImg">
+                <img src="assets/images/panipuri.png" alt="Song Artwork" class="player-art-img" id="playerArtImg">
             </div>
 
             <!-- Middle: Song Name, Artist, Progress Bar, Time -->
@@ -98,6 +98,6 @@
     <!-- Hidden HTML5 Audio Element -->
     <audio id="audioPlayer" preload="auto"></audio>
 
-    <script src="app.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
