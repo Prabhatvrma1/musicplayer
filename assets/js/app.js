@@ -1,16 +1,16 @@
-// ===== COMPLETE PLAYLIST DATA (FULL LENGTH TRACKS FROM SPOTIFY PLAYLIST) =====
+// ===== COMPLETE PLAYLIST DATA (FULL LENGTH BANGERS) =====
 const PLAYLIST = [
     { title: "Pink Lips", artist: "Meet Bros Anjjan, Khushboo Grewal", file: "Pink Lips_spotdown.org.mp3", cover: "assets/images/covers/pink_lips.jpg" },
     { title: "Paani Waala Dance", artist: "Ikka, Arko, Shraddha Pandit", file: "Paani Waala Dance_spotdown.org.mp3", cover: "assets/images/covers/paani_waala_dance.jpg" },
-    { title: "Aaj Ki Raat (From Stree 2)", artist: "Sachin-Jigar, Madhubanti Bagchi", file: "Aaj Ki Raat (From _Stree 2_)_spotdown.org.mp3", cover: "assets/images/covers/aaj_ki_raat__from__stree_2.jpg" },
-    { title: "Aayi Nai (From Stree 2)", artist: "Sachin-Jigar, Pawan Singh, Simran Choudhary", file: "Aayi Nai (From _Stree 2_)_spotdown.org.mp3", cover: "assets/images/covers/aayi_nai__from__stree_2.jpg" },
+    { title: "Aaj Ki Raat", artist: "Sachin-Jigar, Madhubanti Bagchi", file: "Aaj Ki Raat (From _Stree 2_)_spotdown.org.mp3", cover: "assets/images/covers/aaj_ki_raat__from__stree_2.jpg" },
+    { title: "Aayi Nai", artist: "Sachin-Jigar, Pawan Singh, Simran Choudhary", file: "Aayi Nai (From _Stree 2_)_spotdown.org.mp3", cover: "assets/images/covers/aayi_nai__from__stree_2.jpg" },
     { title: "Garmi", artist: "Badshah, Neha Kakkar, Varun Dhawan", file: "Garmi (From _Street Dancer 3D_) (feat. Varun Dhawan)_spotdown.org.mp3", cover: "assets/images/covers/garmi__from__street_dancer_3d____feat__varun_dhawan.jpg" },
     { title: "O Saki Saki", artist: "Neha Kakkar, Tulsi Kumar, B Praak", file: "O Saki Saki (From _Batla House_)_spotdown.org.mp3", cover: "assets/images/covers/o_saki_saki__from__batla_house.jpg" },
     { title: "Party All Night", artist: "Yo Yo Honey Singh", file: "Party All Night (From _Boss_)_spotdown.org.mp3", cover: "assets/images/covers/party_all_night__from__boss.jpg" },
     { title: "Sheila Ki Jawani", artist: "Sunidhi Chauhan, Vishal Dadlani", file: "Sheila Ki Jawani_spotdown.org.mp3", cover: "assets/images/covers/sheila_ki_jawani.jpg" },
     { title: "Munni Badnaam", artist: "Mamta Sharma, Aishwarya Nigam", file: "Munni Badnaam_spotdown.org.mp3", cover: "assets/images/covers/munni_badnaam.jpg" },
     { title: "Chikni Chameli", artist: "Shreya Ghoshal, Ajay-Atul", file: "Chikni Chameli_spotdown.org.mp3", cover: "assets/images/covers/chikni_chameli.jpg" },
-    { title: "Afghan Jalebi (Film Version)", artist: "Pritam, Asrar", file: "Afghan Jalebi (Film Version)_spotdown.org.mp3", cover: "assets/images/covers/afghan_jalebi__film_version.jpg" },
+    { title: "Afghan Jalebi", artist: "Pritam, Asrar", file: "Afghan Jalebi (Film Version)_spotdown.org.mp3", cover: "assets/images/covers/afghan_jalebi__film_version.jpg" },
     { title: "Baby Doll", artist: "Meet Bros Anjjan, Kanika Kapoor", file: "Baby Doll_spotdown.org.mp3", cover: "assets/images/covers/baby_doll.jpg" },
     { title: "Aa Re Pritam Pyaare", artist: "Sajid-Wajid, Mamta Sharma", file: "Aa Re Pritam Pyaare_spotdown.org.mp3", cover: "assets/images/covers/aa_re_pritam_pyaare.jpg" },
     { title: "Aa Toh Sahi", artist: "Meet Bros, Neha Kakkar", file: "Aa Toh Sahi_spotdown.org.mp3", cover: "assets/images/covers/aa_toh_sahi.jpg" },
@@ -36,7 +36,7 @@ const PLAYLIST = [
     { title: "Dilliwaali Girlfriend", artist: "Arijit Singh, Sunidhi Chauhan", file: "Dilliwaali Girlfriend_spotdown.org.mp3", cover: "assets/images/covers/dilliwaali_girlfriend.jpg" },
     { title: "Dj Waley Babu", artist: "Badshah, Aastha Gill", file: "Dj Waley Babu (feat. Aastha Gill)_spotdown.org.mp3", cover: "assets/images/covers/dj_waley_babu__feat__aastha_gill.jpg" },
     { title: "Do Dhaari Talwaar", artist: "Shahid Mallya, Shweta Pandit", file: "Do Dhaari Talwaar_spotdown.org.mp3", cover: "assets/images/covers/do_dhaari_talwaar.jpg" },
-    { title: "Do U Know", artist: "Diljit Dosanjh", file: "Do U Know_spotdown.org.mp3", cover: "assets/images/covers/do_u_know.jpg" },
+    { title: "Do You Know", artist: "Diljit Dosanjh", file: "Do U Know_spotdown.org.mp3", cover: "assets/images/covers/do_u_know.jpg" },
     { title: "Drama Queen", artist: "Shreya Ghoshal, Vishal Dadlani", file: "Drama Queen_spotdown.org.mp3", cover: "assets/images/covers/drama_queen.jpg" },
     { title: "Dreamum Wakeupum", artist: "Sowmya Raoh", file: "Dreamum Wakeupum_spotdown.org.mp3", cover: "assets/images/covers/dreamum_wakeupum.jpg" },
     { title: "Enna Sona", artist: "Arijit Singh, A.R. Rahman", file: "Enna Sona_spotdown.org.mp3", cover: "assets/images/covers/enna_sona.jpg" },
@@ -71,7 +71,7 @@ const PLAYLIST = [
     { title: "Oh Girl You're Mine", artist: "Loy Mendonsa, Tarannum Mallik", file: "Oh Girl You're Mine ._spotdown.org.mp3", cover: "assets/images/covers/oh_girl_you_re_mine.jpg" },
     { title: "Oo Antava Oo Oo Antava", artist: "Indravathi Chauhan", file: "Oo Antava Oo Oo Antava_spotdown.org.mp3", cover: "assets/images/covers/oo_antava_oo_oo_antava.jpg" },
     { title: "Ooh La La", artist: "Bappi Lahiri, Shreya Ghoshal", file: "Ooh La La_spotdown.org.mp3", cover: "assets/images/covers/ooh_la_la.jpg" },
-    { title: "Pinky (From Zanjeer)", artist: "Mamta Sharma, Meet Bros", file: "Pinky (From _Zanjeer_)_spotdown.org.mp3", cover: "assets/images/covers/pinky__from__zanjeer.jpg" },
+    { title: "Pinky (Zanjeer)", artist: "Mamta Sharma, Meet Bros", file: "Pinky (From _Zanjeer_)_spotdown.org.mp3", cover: "assets/images/covers/pinky__from__zanjeer.jpg" },
     { title: "Pinky", artist: "Mamta Sharma", file: "Pinky_spotdown.org.mp3", cover: "assets/images/covers/pinky.jpg" },
     { title: "Piya More", artist: "Mika Singh, Neeti Mohan", file: "Piya More_spotdown.org.mp3", cover: "assets/images/covers/piya_more.jpg" },
     { title: "Pungi", artist: "Mika Singh", file: "Pungi_spotdown.org.mp3", cover: "assets/images/covers/pungi.jpg" },
@@ -81,7 +81,7 @@ const PLAYLIST = [
     { title: "Saiyaan Superstar", artist: "Tulsi Kumar", file: "Saiyaan Superstar_spotdown.org.mp3", cover: "assets/images/covers/saiyaan_superstar.jpg" },
     { title: "Sheesha", artist: "Diler Kharkiya", file: "Sheesha - Aakhya Mai Aakh Ghali Jo Bairan_spotdown.org.mp3", cover: "assets/images/covers/sheesha_-_aakhya_mai_aakh_ghali_jo_bairan.jpg" },
     { title: "Shuddh Desi Romance", artist: "Benny Dayal, Shalmali Kholgade", file: "Shuddh Desi Romance_spotdown.org.mp3", cover: "assets/images/covers/shuddh_desi_romance.jpg" },
-    { title: "Taras (From Munjya)", artist: "Jasmine Sandlas, Sachin-Jigar", file: "Taras - From _Munjya__spotdown.org.mp3", cover: "assets/images/covers/taras_-_from__munjya.jpg" },
+    { title: "Taras", artist: "Jasmine Sandlas, Sachin-Jigar", file: "Taras - From _Munjya__spotdown.org.mp3", cover: "assets/images/covers/taras_-_from__munjya.jpg" },
     { title: "Tattoo", artist: "Yo Yo Honey Singh", file: "Tattoo_spotdown.org.mp3", cover: "assets/images/covers/tattoo.jpg" },
     { title: "Tera Mera Rishta", artist: "Mustafa Zahid", file: "Tera Mera Rishta - Original Version_spotdown.org.mp3", cover: "assets/images/covers/tera_mera_rishta_-_original_version.jpg" },
     { title: "Thumkeshwari", artist: "Ash King, Rashmeet Kaur, Sachin-Jigar", file: "Thumkeshwari_spotdown.org.mp3", cover: "assets/images/covers/thumkeshwari.jpg" },
@@ -97,7 +97,7 @@ const PLAYLIST = [
     { title: "Vele", artist: "Vishal Dadlani, Shekhar Ravjiani", file: "Vele_spotdown.org.mp3", cover: "assets/images/covers/vele.jpg" },
     { title: "Wakhra Swag", artist: "Navv Inder, Badshah", file: "Wakhra Swag_spotdown.org.mp3", cover: "assets/images/covers/wakhra_swag.jpg" },
     { title: "Woh Lamhe Woh Baatein", artist: "Atif Aslam", file: "Woh Lamhe Woh Baatein_spotdown.org.mp3", cover: "assets/images/covers/woh_lamhe_woh_baatein.jpg" },
-    { title: "Yeh Mera Dil (Dance Mix)", artist: "Asha Bhosle", file: "Yeh Mera Dil - Don 78 - Compilation - Yeh Mera Dil - Dance Mix_spotdown.org.mp3", cover: "assets/images/covers/yeh_mera_dil_-_don_78_-_compilation_-_yeh_mera_dil_-_dance_mix.jpg" },
+    { title: "Yeh Mera Dil", artist: "Asha Bhosle", file: "Yeh Mera Dil - Don 78 - Compilation - Yeh Mera Dil - Dance Mix_spotdown.org.mp3", cover: "assets/images/covers/yeh_mera_dil_-_don_78_-_compilation_-_yeh_mera_dil_-_dance_mix.jpg" },
     { title: "Zara Zara Touch Me", artist: "Monali Thakur", file: "Zara Zara Touch Me_spotdown.org.mp3", cover: "assets/images/covers/zara_zara_touch_me.jpg" }
 ];
 
@@ -126,16 +126,34 @@ const hudPill = document.getElementById('hudPill');
 const hudIcon = document.getElementById('hudIcon');
 const hudText = document.getElementById('hudText');
 
-// ===== STATE =====
-let currentIndex = 0;
+// ===== SHUFFLE QUEUE STATE =====
+let playbackQueue = [];
+let queueIndex = 0;
 let isPlaying = false;
 let isSeeking = false;
 let hudTimeout = null;
 
+// Initialize Shuffle Queue:
+// Track 0 is ALWAYS "Pink Lips" (PLAYLIST[0])
+// Remaining tracks (1..N) are purely randomized with Fisher-Yates shuffle
+function initShuffleQueue() {
+    const remaining = [];
+    for (let i = 1; i < PLAYLIST.length; i++) {
+        remaining.push(i);
+    }
+    for (let i = remaining.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+    }
+    playbackQueue = [0, ...remaining];
+    queueIndex = 0;
+}
+
 // ===== INITIALIZE =====
 function init() {
     audio.volume = 0.9;
-    loadTrack(0, false, false);
+    initShuffleQueue();
+    loadQueueTrack(0, false, false);
     bindEvents();
     updateClock();
     setInterval(updateClock, 1000);
@@ -167,11 +185,10 @@ function initOnlineCounter() {
     }, 12000);
 }
 
-// ===== LOAD TRACK (FULL AUDIO FILE) =====
+// ===== LOAD TRACK (BY PLAYLIST INDEX) =====
 function loadTrack(index, autoPlay = true, showHud = true) {
     if (index < 0) index = PLAYLIST.length - 1;
     if (index >= PLAYLIST.length) index = 0;
-    currentIndex = index;
 
     const track = PLAYLIST[index];
     songTitle.textContent = track.title;
@@ -198,11 +215,61 @@ function loadTrack(index, autoPlay = true, showHud = true) {
     }
 }
 
+// ===== LOAD TRACK BY QUEUE POSITION =====
+function loadQueueTrack(pos, autoPlay = true, showHud = true) {
+    if (playbackQueue.length === 0) initShuffleQueue();
+
+    if (pos >= playbackQueue.length) {
+        // Continuous looped shuffle
+        const allIndices = Array.from({ length: PLAYLIST.length }, (_, i) => i);
+        for (let i = allIndices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [allIndices[i], allIndices[j]] = [allIndices[j], allIndices[i]];
+        }
+        playbackQueue = allIndices;
+        pos = 0;
+    } else if (pos < 0) {
+        pos = playbackQueue.length - 1;
+    }
+
+    queueIndex = pos;
+    const playlistIndex = playbackQueue[queueIndex];
+    loadTrack(playlistIndex, autoPlay, showHud);
+}
+
+// ===== NEXT & PREVIOUS =====
+function playNextTrack() {
+    triggerPillPulse();
+    loadQueueTrack(queueIndex + 1, true, true);
+}
+
+function playPrevTrack() {
+    triggerPillPulse();
+    loadQueueTrack(queueIndex - 1, true, true);
+}
+
+// ===== RESHUFFLE =====
+function reshuffleAndPlay() {
+    const curIndex = playbackQueue[queueIndex] ?? 0;
+    const remaining = [];
+    for (let i = 0; i < PLAYLIST.length; i++) {
+        if (i !== curIndex) remaining.push(i);
+    }
+    for (let i = remaining.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+    }
+    playbackQueue = [curIndex, ...remaining];
+    queueIndex = 0;
+    showHUD('🔀', 'Shuffled');
+    playNextTrack();
+}
+
 // ===== TOGGLE PLAY / PAUSE =====
 function togglePlay() {
     triggerPillPulse();
     if (!audio.src || audio.src === '' || audio.src.endsWith('/')) {
-        loadTrack(currentIndex, true, true);
+        loadQueueTrack(queueIndex, true, true);
         return;
     }
 
@@ -215,8 +282,7 @@ function togglePlay() {
                 showHUD('▶', 'Play');
             }).catch(err => {
                 console.log('Playback error:', err);
-                // If autoplay restriction requires direct load
-                loadTrack(currentIndex, true, true);
+                loadQueueTrack(queueIndex, true, true);
             });
         }
     } else {
@@ -240,17 +306,6 @@ function seekRelative(deltaSeconds) {
     triggerPillPulse();
 }
 
-// ===== RANDOM / SHUFFLE =====
-function playRandom() {
-    let nextIndex;
-    do {
-        nextIndex = Math.floor(Math.random() * PLAYLIST.length);
-    } while (nextIndex === currentIndex && PLAYLIST.length > 1);
-
-    showHUD('🔀', 'Shuffle');
-    loadTrack(nextIndex, true, false);
-}
-
 // ===== TOGGLE MUTE =====
 function toggleMute() {
     audio.muted = !audio.muted;
@@ -259,21 +314,23 @@ function toggleMute() {
 
 // ===== HUD TOAST NOTIFICATION =====
 function showHUD(icon, text) {
-    if (!hudPill) return;
+    if (!hudPill || !hudIcon || !hudText) return;
     hudIcon.textContent = icon;
     hudText.textContent = text;
-    hudPill.classList.add('show');
+    hudPill.classList.add('visible');
 
-    clearTimeout(hudTimeout);
+    if (hudTimeout) clearTimeout(hudTimeout);
     hudTimeout = setTimeout(() => {
-        hudPill.classList.remove('show');
-    }, 1200);
+        hudPill.classList.remove('visible');
+    }, 1400);
 }
 
+// ===== PILL PULSE ANIMATION =====
 function triggerPillPulse() {
     if (!playerPill) return;
-    playerPill.classList.add('key-active');
-    setTimeout(() => playerPill.classList.remove('key-active'), 180);
+    playerPill.classList.remove('pulse');
+    void playerPill.offsetWidth; // Force reflow
+    playerPill.classList.add('pulse');
 }
 
 // ===== MODAL TOGGLE =====
@@ -282,7 +339,7 @@ function toggleShortcutsModal() {
     modalBackdrop.classList.toggle('open');
 }
 
-// ===== UI HELPERS =====
+// ===== UI UPDATES =====
 function updatePlayIcon() {
     if (isPlaying) {
         iconPlay.style.display = 'none';
@@ -332,8 +389,8 @@ function seek(e) {
 function bindEvents() {
     btnPlay.addEventListener('click', togglePlay);
     if (cdDisc) cdDisc.addEventListener('click', togglePlay);
-    btnPrev.addEventListener('click', () => loadTrack(currentIndex - 1, true));
-    btnNext.addEventListener('click', () => loadTrack(currentIndex + 1, true));
+    btnPrev.addEventListener('click', playPrevTrack);
+    btnNext.addEventListener('click', playNextTrack);
 
     audio.addEventListener('play', () => {
         isPlaying = true;
@@ -352,7 +409,7 @@ function bindEvents() {
     });
 
     audio.addEventListener('ended', () => {
-        loadTrack(currentIndex + 1, true, false);
+        playNextTrack();
     });
 
     // Seek Click & Drag
@@ -422,24 +479,24 @@ function bindEvents() {
             return;
         }
 
-        // Next Song (N or >)
+        // Next Song (N or >) -> Shuffled Next
         if (code === 'KeyN' || key === 'n' || key === 'N' || key === '>' || code === 'Period') {
             e.preventDefault();
-            loadTrack(currentIndex + 1, true);
+            playNextTrack();
             return;
         }
 
-        // Previous Song (P or <)
+        // Previous Song (P or <) -> Shuffled Prev
         if (code === 'KeyP' || key === 'p' || key === 'P' || key === '<' || code === 'Comma') {
             e.preventDefault();
-            loadTrack(currentIndex - 1, true);
+            playPrevTrack();
             return;
         }
 
         // Shuffle / Random (R)
         if (code === 'KeyR' || key === 'r' || key === 'R') {
             e.preventDefault();
-            playRandom();
+            reshuffleAndPlay();
             return;
         }
 
