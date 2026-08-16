@@ -201,12 +201,24 @@ function loadTrack(index, autoPlay = true, showHud = true) {
 // ===== TOGGLE PLAY / PAUSE =====
 function togglePlay() {
     triggerPillPulse();
+    if (!audio.src || audio.src === '' || audio.src.endsWith('/')) {
+        loadTrack(currentIndex, true, true);
+        return;
+    }
+
     if (audio.paused) {
-        audio.play().then(() => {
-            isPlaying = true;
-            updatePlayIcon();
-            showHUD('▶', 'Play');
-        }).catch(err => console.log('Playback error:', err));
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                isPlaying = true;
+                updatePlayIcon();
+                showHUD('▶', 'Play');
+            }).catch(err => {
+                console.log('Playback error:', err);
+                // If autoplay restriction requires direct load
+                loadTrack(currentIndex, true, true);
+            });
+        }
     } else {
         audio.pause();
         isPlaying = false;
@@ -380,57 +392,79 @@ function bindEvents() {
         });
     }
 
-    // Keyboard Shortcuts
-    document.addEventListener('keydown', (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    // Keyboard Shortcuts (Space, K, J, L, N, P, R, M, ?, etc.)
+    window.addEventListener('keydown', (e) => {
+        if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
 
-        switch (e.code) {
-            case 'Space':
-                e.preventDefault();
-                togglePlay();
-                break;
-            case 'ArrowRight':
-            case 'KeyL':
-                e.preventDefault();
-                seekRelative(e.shiftKey ? 10 : 5);
-                break;
-            case 'ArrowLeft':
-            case 'KeyJ':
-                e.preventDefault();
-                seekRelative(e.shiftKey ? -10 : -5);
-                break;
-            case 'KeyN':
-            case 'Period':
-                e.preventDefault();
-                loadTrack(currentIndex + 1, true);
-                break;
-            case 'KeyP':
-            case 'Comma':
-                e.preventDefault();
-                loadTrack(currentIndex - 1, true);
-                break;
-            case 'KeyR':
-                e.preventDefault();
-                playRandom();
-                break;
-            case 'KeyM':
-                e.preventDefault();
-                toggleMute();
-                break;
-            case 'Slash':
-            case 'KeyH':
-                if (e.shiftKey || e.code === 'KeyH') {
-                    e.preventDefault();
-                    toggleShortcutsModal();
-                }
-                break;
-            case 'Escape':
-                if (modalBackdrop && modalBackdrop.classList.contains('open')) {
-                    modalBackdrop.classList.remove('open');
-                }
-                break;
+        const key = e.key || '';
+        const code = e.code || '';
+        const keyCode = e.keyCode || 0;
+
+        // Space or 'K' -> Play / Pause
+        if (code === 'Space' || key === ' ' || key === 'Spacebar' || keyCode === 32 || code === 'KeyK' || key === 'k' || key === 'K') {
+            e.preventDefault();
+            e.stopPropagation();
+            togglePlay();
+            return;
         }
-    });
+
+        // Seek Forward (Right Arrow or L)
+        if (code === 'ArrowRight' || key === 'ArrowRight' || code === 'KeyL' || key === 'l' || key === 'L') {
+            e.preventDefault();
+            seekRelative(e.shiftKey ? 10 : 5);
+            return;
+        }
+
+        // Seek Backward (Left Arrow or J)
+        if (code === 'ArrowLeft' || key === 'ArrowLeft' || code === 'KeyJ' || key === 'j' || key === 'J') {
+            e.preventDefault();
+            seekRelative(e.shiftKey ? -10 : -5);
+            return;
+        }
+
+        // Next Song (N or >)
+        if (code === 'KeyN' || key === 'n' || key === 'N' || key === '>' || code === 'Period') {
+            e.preventDefault();
+            loadTrack(currentIndex + 1, true);
+            return;
+        }
+
+        // Previous Song (P or <)
+        if (code === 'KeyP' || key === 'p' || key === 'P' || key === '<' || code === 'Comma') {
+            e.preventDefault();
+            loadTrack(currentIndex - 1, true);
+            return;
+        }
+
+        // Shuffle / Random (R)
+        if (code === 'KeyR' || key === 'r' || key === 'R') {
+            e.preventDefault();
+            playRandom();
+            return;
+        }
+
+        // Mute / Unmute (M)
+        if (code === 'KeyM' || key === 'm' || key === 'M') {
+            e.preventDefault();
+            toggleMute();
+            return;
+        }
+
+        // Toggle Shortcuts Modal (? or H)
+        if (key === '?' || (code === 'Slash' && e.shiftKey) || code === 'KeyH' || key === 'h' || key === 'H') {
+            e.preventDefault();
+            toggleShortcutsModal();
+            return;
+        }
+
+        // Close Modal on Escape
+        if (code === 'Escape' || key === 'Escape' || keyCode === 27) {
+            if (modalBackdrop && modalBackdrop.classList.contains('open')) {
+                e.preventDefault();
+                modalBackdrop.classList.remove('open');
+            }
+        }
+    }, { capture: true });
 }
 
 document.addEventListener('DOMContentLoaded', init);
