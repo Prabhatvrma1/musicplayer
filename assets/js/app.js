@@ -137,6 +137,34 @@ function init() {
     audio.volume = 0.9;
     loadTrack(0, false, false);
     bindEvents();
+    updateClock();
+    setInterval(updateClock, 1000);
+    initOnlineCounter();
+}
+
+// ===== LIVE CLOCK (saloon.wtf style: "7 54 pm") =====
+function updateClock() {
+    const topClock = document.getElementById('topClock');
+    if (!topClock) return;
+    const now = new Date();
+    let hours = now.getHours();
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    topClock.textContent = `${hours} ${minutes} ${ampm}`;
+}
+
+// ===== LIVE ONLINE USER COUNTER SIMULATION =====
+function initOnlineCounter() {
+    const onlineEl = document.getElementById('onlineCount');
+    if (!onlineEl) return;
+    let count = 31;
+    setInterval(() => {
+        const change = Math.floor(Math.random() * 3) - 1; // -1, 0, +1
+        count = Math.max(26, Math.min(39, count + change));
+        onlineEl.textContent = count;
+    }, 12000);
 }
 
 // ===== LOAD TRACK (FULL AUDIO FILE) =====
