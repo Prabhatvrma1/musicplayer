@@ -20,11 +20,12 @@
 </head>
 <body>
 
-    <!-- Fullscreen Video Background Scene -->
+    <!-- Responsive Image Background Scene (desk.jpg on desktop, phone.png on mobile) -->
     <div class="scene-container">
-        <video class="scene-bg" autoplay loop muted playsinline poster="assets/images/bg_clean.png">
-            <source src="assets/video/new_background.mp4" type="video/mp4">
-        </video>
+        <picture class="scene-bg-picture">
+            <source media="(max-width: 640px)" srcset="assets/images/phone.png">
+            <img class="scene-bg" src="assets/images/desk.jpg" alt="चटपटे गाने" loading="eager" decoding="async">
+        </picture>
 
         <!-- Ambient Lighting Overlay -->
         <div class="scene-overlay"></div>

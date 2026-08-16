@@ -38,6 +38,15 @@ html, body {
     box-sizing: border-box;
 }
 
+.scene-bg-picture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
 .scene-bg {
     position: absolute;
     inset: 0;
@@ -613,6 +622,11 @@ html, body {
 }
 
 @media (max-width: 640px) {
+    .scene-bg {
+        object-fit: cover;
+        object-position: 50% 65%;
+    }
+
     .nav-label, .external-arrow {
         display: none;
     }
