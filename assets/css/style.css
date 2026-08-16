@@ -624,7 +624,7 @@ html, body {
 @media (max-width: 640px) {
     .scene-bg {
         object-fit: cover;
-        object-position: 50% 52%;
+        object-position: center top;
     }
 
     .nav-label, .external-arrow {
