@@ -107,6 +107,7 @@ const playerPill = document.getElementById('playerPill');
 const songTitle = document.getElementById('songTitle');
 const songArtist = document.getElementById('songArtist');
 const playerArtImg = document.getElementById('playerArtImg');
+const cdDisc = document.getElementById('cdDisc');
 const timeLabel = document.getElementById('timeLabel');
 const progressFill = document.getElementById('progressFill');
 const progressDot = document.getElementById('progressDot');
@@ -246,9 +247,11 @@ function updatePlayIcon() {
     if (isPlaying) {
         iconPlay.style.display = 'none';
         iconPause.style.display = 'block';
+        if (cdDisc) cdDisc.classList.add('is-spinning');
     } else {
         iconPlay.style.display = 'block';
         iconPause.style.display = 'none';
+        if (cdDisc) cdDisc.classList.remove('is-spinning');
     }
 }
 
@@ -288,6 +291,7 @@ function seek(e) {
 // ===== EVENT LISTENERS =====
 function bindEvents() {
     btnPlay.addEventListener('click', togglePlay);
+    if (cdDisc) cdDisc.addEventListener('click', togglePlay);
     btnPrev.addEventListener('click', () => loadTrack(currentIndex - 1, true));
     btnNext.addEventListener('click', () => loadTrack(currentIndex + 1, true));
 

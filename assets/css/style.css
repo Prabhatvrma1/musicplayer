@@ -230,32 +230,86 @@ html, body {
     transform: scale(1.02);
 }
 
-/* ===== SPOTIFY COVER / ARTWORK ===== */
-.player-art-wrap {
+/* ===== SPINNING CD / VINYL DISC EFFECT ===== */
+.player-art-wrap.cd-disc {
     width: 48px;
     height: 48px;
     min-width: 48px;
-    border-radius: 10px;
-    background: #18121a;
+    border-radius: 50%;
+    position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0f0a12;
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.6),
+        0 0 0 2px rgba(255, 255, 255, 0.15),
+        inset 0 0 8px rgba(0, 0, 0, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.25s ease;
+    cursor: pointer;
+    /* Smooth 360-degree spin */
+    animation: cd-spin 4s linear infinite;
+    animation-play-state: paused;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.player-art-wrap:hover {
-    transform: scale(1.06);
+.player-art-wrap.cd-disc.is-spinning {
+    animation-play-state: running;
+}
+
+.player-art-wrap.cd-disc:hover {
+    transform: scale(1.08);
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.7),
+        0 0 0 2px rgba(255, 255, 255, 0.3);
 }
 
 .player-art-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 50%;
     display: block;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Concentric Grooves & Holographic Sheen */
+.cd-grooves {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    background: 
+        radial-gradient(circle, transparent 30%, rgba(0,0,0,0.25) 32%, transparent 34%, rgba(0,0,0,0.18) 55%, transparent 58%, rgba(0,0,0,0.3) 78%, transparent 80%),
+        conic-gradient(from 45deg, rgba(255,255,255,0.15) 0deg, transparent 60deg, rgba(255,255,255,0.15) 120deg, transparent 180deg, rgba(255,255,255,0.15) 240deg, transparent 300deg, rgba(255,255,255,0.15) 360deg);
+    mix-blend-mode: screen;
+}
+
+/* Center Spindle Hole */
+.cd-center-hole {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #18121a;
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    box-shadow: 
+        inset 0 0 4px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    pointer-events: none;
+}
+
+@keyframes cd-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* ===== MIDDLE CONTENT (SONG TITLE, ARTIST, TIMELINE) ===== */
