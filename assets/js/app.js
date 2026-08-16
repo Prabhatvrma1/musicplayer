@@ -1,108 +1,20 @@
-// ===== PLAYLIST SONGS (FROM SPOTIFY 'CHATPATE GAANE' PLAYLIST) =====
-const SONGS = [
-    { title: "Pink Lips", artist: "Meet Bros Anjjan, Khushboo Grewal", file: "Pink Lips_spotdown.org.mp3" },
-    { title: "Paani Waala Dance", artist: "Ikka, Arko, Shraddha Pandit", file: "Paani Waala Dance_spotdown.org.mp3" },
-    { title: "Aaj Ki Raat (From Stree 2)", artist: "Sachin-Jigar, Madhubanti Bagchi", file: "Aaj Ki Raat (From _Stree 2_)_spotdown.org.mp3" },
-    { title: "Aayi Nai (From Stree 2)", artist: "Sachin-Jigar, Pawan Singh, Simran Choudhary", file: "Aayi Nai (From _Stree 2_)_spotdown.org.mp3" },
-    { title: "Garmi", artist: "Badshah, Neha Kakkar, Varun Dhawan", file: "Garmi (From _Street Dancer 3D_) (feat. Varun Dhawan)_spotdown.org.mp3" },
-    { title: "O Saki Saki", artist: "Neha Kakkar, Tulsi Kumar, B Praak", file: "O Saki Saki (From _Batla House_)_spotdown.org.mp3" },
-    { title: "Party All Night", artist: "Yo Yo Honey Singh", file: "Party All Night (From _Boss_)_spotdown.org.mp3" },
-    { title: "Sheila Ki Jawani", artist: "Sunidhi Chauhan, Vishal Dadlani", file: "Sheila Ki Jawani_spotdown.org.mp3" },
-    { title: "Munni Badnaam", artist: "Mamta Sharma, Aishwarya Nigam", file: "Munni Badnaam_spotdown.org.mp3" },
-    { title: "Chikni Chameli", artist: "Shreya Ghoshal, Ajay-Atul", file: "Chikni Chameli_spotdown.org.mp3" },
-    { title: "Afghan Jalebi (Film Version)", artist: "Pritam, Asrar", file: "Afghan Jalebi (Film Version)_spotdown.org.mp3" },
-    { title: "Baby Doll", artist: "Meet Bros Anjjan, Kanika Kapoor", file: "Baby Doll_spotdown.org.mp3" },
-    { title: "Aa Re Pritam Pyaare", artist: "Sajid-Wajid, Mamta Sharma", file: "Aa Re Pritam Pyaare_spotdown.org.mp3" },
-    { title: "Aa Toh Sahi", artist: "Meet Bros, Neha Kakkar", file: "Aa Toh Sahi_spotdown.org.mp3" },
-    { title: "Aadat", artist: "Atif Aslam, Jal", file: "Aadat_spotdown.org.mp3" },
-    { title: "Aao Kabhi Haveli Pe", artist: "Badshah, Nikhita Gandhi", file: "Aao Kabhi Haveli Pe_spotdown.org.mp3" },
-    { title: "Aao Raja", artist: "Yo Yo Honey Singh, Neha Kakkar", file: "Aao Raja_spotdown.org.mp3" },
-    { title: "Aga Bai", artist: "Shalmali Kholgade, Monali Thakur", file: "Aga Bai_spotdown.org.mp3" },
-    { title: "Allah Maaf Kare", artist: "Sonu Nigam, Shilpa Rao", file: "Allah Maaf Kare_spotdown.org.mp3" },
-    { title: "Anarkali Disco Chali", artist: "Mamta Sharma, Sukhwinder Singh", file: "Anarkali Disco Chali_spotdown.org.mp3" },
-    { title: "Ang Laga De", artist: "Shreya Ghoshal, Osman Mir", file: "Ang Laga De_spotdown.org.mp3" },
-    { title: "Angreji Beat", artist: "Yo Yo Honey Singh, Gippy Grewal", file: "Angreji Beat_spotdown.org.mp3" },
-    { title: "Babli Badmaash", artist: "Sunidhi Chauhan", file: "Babli Badmaash_spotdown.org.mp3" },
-    { title: "Bairan", artist: "Diler Kharkiya", file: "Bairan_spotdown.org.mp3" },
-    { title: "Balma", artist: "Sreerama Chandra, Shreya Ghoshal", file: "Balma_spotdown.org.mp3" },
-    { title: "Beedi", artist: "Sunidhi Chauhan, Sukhwinder Singh", file: "Beedi_spotdown.org.mp3" },
-    { title: "Billo Rani", artist: "Anand Raj Anand, Richa Sharma", file: "Billo Rani_spotdown.org.mp3" },
-    { title: "Blue Eyes", artist: "Yo Yo Honey Singh", file: "Blue Eyes_spotdown.org.mp3" },
-    { title: "Chaar Botal Vodka", artist: "Yo Yo Honey Singh", file: "Chaar Botal Vodka (From _Ragini Mms 2_)_spotdown.org.mp3" },
-    { title: "Character Dheela", artist: "Neeraj Shridhar, Amrita Kak", file: "Character Dheela_spotdown.org.mp3" },
-    { title: "Chhaliya", artist: "Sunidhi Chauhan, Sukhwinder Singh", file: "Chhaliya_spotdown.org.mp3" },
-    { title: "Chokra Jawaan", artist: "Vishal Dadlani, Sunidhi Chauhan", file: "Chokra Jawaan_spotdown.org.mp3" },
-    { title: "Dilbara", artist: "Parampara Tandon, Sachet Tandon", file: "Dilbara_spotdown.org.mp3" },
-    { title: "Dilliwaali Girlfriend", artist: "Arijit Singh, Sunidhi Chauhan", file: "Dilliwaali Girlfriend_spotdown.org.mp3" },
-    { title: "Dj Waley Babu", artist: "Badshah, Aastha Gill", file: "Dj Waley Babu (feat. Aastha Gill)_spotdown.org.mp3" },
-    { title: "Do Dhaari Talwaar", artist: "Shahid Mallya, Shweta Pandit", file: "Do Dhaari Talwaar_spotdown.org.mp3" },
-    { title: "Do U Know", artist: "Diljit Dosanjh", file: "Do U Know_spotdown.org.mp3" },
-    { title: "Drama Queen", artist: "Shreya Ghoshal, Vishal Dadlani", file: "Drama Queen_spotdown.org.mp3" },
-    { title: "Dreamum Wakeupum", artist: "Sowmya Raoh", file: "Dreamum Wakeupum_spotdown.org.mp3" },
-    { title: "Enna Sona", artist: "Arijit Singh, A.R. Rahman", file: "Enna Sona_spotdown.org.mp3" },
-    { title: "Galat Baat Hai", artist: "Neeti Mohan, Javed Ali", file: "Galat Baat Hai_spotdown.org.mp3" },
-    { title: "Ganpat", artist: "Mika Singh", file: "Ganpat_spotdown.org.mp3" },
-    { title: "Ghagra", artist: "Vishal Dadlani, Rekha Bhardwaj", file: "Ghagra_spotdown.org.mp3" },
-    { title: "Gucci", artist: "Aroob Khan", file: "Gucci_spotdown.org.mp3" },
-    { title: "Gulaabo", artist: "Vishal Dadlani, Anusha Mani", file: "Gulaabo_spotdown.org.mp3" },
-    { title: "Gypsy", artist: "Pranjal Dahiya, GD Kaur", file: "Gypsy (feat. Pranjal Dahiya )_spotdown.org.mp3" },
-    { title: "Hai Rama", artist: "Hariharan, Swarnalatha", file: "Hai Rama_spotdown.org.mp3" },
-    { title: "Halkat Jawani", artist: "Sunidhi Chauhan", file: "Halkat Jawani_spotdown.org.mp3" },
-    { title: "Hoth Rasiley", artist: "Pritam, Shankar Mahadevan", file: "Hoth Rasiley_spotdown.org.mp3" },
-    { title: "Jadoo Ki Jhappi", artist: "Mika Singh, Neha Kakkar", file: "Jadoo Ki Jhappi_spotdown.org.mp3" },
-    { title: "Jhalla Wallah", artist: "Shreya Ghoshal", file: "Jhalla Wallah_spotdown.org.mp3" },
-    { title: "Kajra Re", artist: "Alisha Chinai, Shankar Mahadevan", file: "Kajra Re_spotdown.org.mp3" },
-    { title: "Kamariya", artist: "Darshan Raval, Dj Chetas", file: "Kamariya_spotdown.org.mp3" },
-    { title: "Kamli", artist: "Sunidhi Chauhan", file: "Kamli_spotdown.org.mp3" },
-    { title: "Kiya Kiya", artist: "Anand Raj Anand", file: "Kiya Kiya_spotdown.org.mp3" },
-    { title: "Laal Pari", artist: "Yo Yo Honey Singh", file: "Laal Pari (From _Housefull 5_)_spotdown.org.mp3" },
-    { title: "Lahu Munh Lag Gaya", artist: "Shail Hada", file: "Lahu Munh Lag Gaya_spotdown.org.mp3" },
-    { title: "Laila Main Laila", artist: "Pawni Pandey", file: "Laila Main Laila_spotdown.org.mp3" },
-    { title: "Laila", artist: "Sunidhi Chauhan", file: "Laila_spotdown.org.mp3" },
-    { title: "Lat Lag Gayee", artist: "Benny Dayal, Shalmali Kholgade", file: "Lat Lag Gayee_spotdown.org.mp3" },
-    { title: "Latoo", artist: "Shreya Ghoshal", file: "Latoo_spotdown.org.mp3" },
-    { title: "Le Le Mazaa Le", artist: "Soumya Rao", file: "Le Le Mazaa Le_spotdown.org.mp3" },
-    { title: "Love Dose", artist: "Yo Yo Honey Singh", file: "Love Dose_spotdown.org.mp3" },
-    { title: "Main Badhiya Tu Bhi Badhiya", artist: "Sonu Nigam, Sunidhi Chauhan", file: "Main Badhiya Tu Bhi Badhiya (From _Sanju_)_spotdown.org.mp3" },
-    { title: "Mayya Mayya", artist: "Maryem Tollar, Chinmayi", file: "Mayya Mayya_spotdown.org.mp3" },
-    { title: "Mayya", artist: "A.R. Rahman", file: "Mayya_spotdown.org.mp3" },
-    { title: "Mera Naam Mary", artist: "Chinmayi Sripada", file: "Mera Naam Mary (From _Brothers_)_spotdown.org.mp3" },
-    { title: "Milegi Milegi", artist: "Mika Singh, Sachin-Jigar", file: "Milegi Milegi (From _Stree_)_spotdown.org.mp3" },
-    { title: "Oh Girl You're Mine", artist: "Loy Mendonsa, Tarannum Mallik", file: "Oh Girl You're Mine ._spotdown.org.mp3" },
-    { title: "Oo Antava Oo Oo Antava", artist: "Indravathi Chauhan", file: "Oo Antava Oo Oo Antava_spotdown.org.mp3" },
-    { title: "Ooh La La", artist: "Bappi Lahiri, Shreya Ghoshal", file: "Ooh La La_spotdown.org.mp3" },
-    { title: "Pinky (From Zanjeer)", artist: "Mamta Sharma, Meet Bros", file: "Pinky (From _Zanjeer_)_spotdown.org.mp3" },
-    { title: "Pinky", artist: "Mamta Sharma", file: "Pinky_spotdown.org.mp3" },
-    { title: "Piya More", artist: "Mika Singh, Neeti Mohan", file: "Piya More_spotdown.org.mp3" },
-    { title: "Pungi", artist: "Mika Singh", file: "Pungi_spotdown.org.mp3" },
-    { title: "Ram Chahe Leela", artist: "Bhoomi Trivedi", file: "Ram Chahe Leela_spotdown.org.mp3" },
-    { title: "Ramta Jogi", artist: "Sukhwinder Singh, Alka Yagnik", file: "Ramta Jogi_spotdown.org.mp3" },
-    { title: "Right Now Now", artist: "Sunidhi Chauhan, Suzanne D'Mello", file: "Right Now Now_spotdown.org.mp3" },
-    { title: "Saiyaan Superstar", artist: "Tulsi Kumar", file: "Saiyaan Superstar_spotdown.org.mp3" },
-    { title: "Sheesha", artist: "Diler Kharkiya", file: "Sheesha - Aakhya Mai Aakh Ghali Jo Bairan_spotdown.org.mp3" },
-    { title: "Shuddh Desi Romance", artist: "Benny Dayal, Shalmali Kholgade", file: "Shuddh Desi Romance_spotdown.org.mp3" },
-    { title: "Taras (From Munjya)", artist: "Jasmine Sandlas, Sachin-Jigar", file: "Taras - From _Munjya__spotdown.org.mp3" },
-    { title: "Tattoo", artist: "Yo Yo Honey Singh", file: "Tattoo_spotdown.org.mp3" },
-    { title: "Tera Mera Rishta", artist: "Mustafa Zahid", file: "Tera Mera Rishta - Original Version_spotdown.org.mp3" },
-    { title: "Thumkeshwari", artist: "Ash King, Rashmeet Kaur, Sachin-Jigar", file: "Thumkeshwari_spotdown.org.mp3" },
-    { title: "Tinku Jiya", artist: "Mamta Sharma, Javed Ali", file: "Tinku Jiya_spotdown.org.mp3" },
-    { title: "Tip Tip Barsa Paani", artist: "Udit Narayan, Alka Yagnik", file: "Tip Tip Barsa Paani - From _Mohra__spotdown.org.mp3" },
-    { title: "Toh Phir Aao", artist: "Mustafa Zahid", file: "Toh Phir Aao - Original Version_spotdown.org.mp3" },
-    { title: "Tu Cheez Badi Hain", artist: "Udit Narayan, Kavita Krishnamurthy", file: "Tu Cheez Badi Hain (From _Mohra_)_spotdown.org.mp3" },
-    { title: "Tu Mera Hero", artist: "Mika Singh, Shefali Alvares", file: "Tu Mera Hero_spotdown.org.mp3" },
-    { title: "Tu Mere Agal Bagal Hai", artist: "Mika Singh, Pritam", file: "Tu Mere Agal Bagal Hai_spotdown.org.mp3" },
-    { title: "Tum Hi Ho Bandhu", artist: "Neeraj Shridhar, Kavita Seth", file: "Tum Hi Ho Bandhu_spotdown.org.mp3" },
-    { title: "Ucha Lamba Kad", artist: "Anand Raj Anand, Kalpana Patowary", file: "Ucha Lamba Kad_spotdown.org.mp3" },
-    { title: "Ude Dil Befikre", artist: "Benny Dayal", file: "Ude Dil Befikre_spotdown.org.mp3" },
-    { title: "Vele", artist: "Vishal Dadlani, Shekhar Ravjiani", file: "Vele_spotdown.org.mp3" },
-    { title: "Wakhra Swag", artist: "Navv Inder, Badshah", file: "Wakhra Swag_spotdown.org.mp3" },
-    { title: "Woh Lamhe Woh Baatein", artist: "Atif Aslam", file: "Woh Lamhe Woh Baatein_spotdown.org.mp3" },
-    { title: "Yeh Mera Dil (Dance Mix)", artist: "Asha Bhosle", file: "Yeh Mera Dil - Don 78 - Compilation - Yeh Mera Dil - Dance Mix_spotdown.org.mp3" },
-    { title: "Zara Zara Touch Me", artist: "Monali Thakur", file: "Zara Zara Touch Me_spotdown.org.mp3" }
+// ===== PLAYLIST DATA (FROM SPOTIFY PLAYLIST: Chatpate gaane 👄) =====
+const PLAYLIST = [
+    { title: "Pink Lips", artist: "Meet Bros Anjjan, Khushboo Grewal", uri: "spotify:track:2tyITgmOGVz6rqleDokbEN" },
+    { title: "Paani Waala Dance", artist: "Ikka, Arko, Shraddha Pandit", uri: "spotify:track:0Wt2nTFdp8maSu2cNRMxDx" },
+    { title: "Aaj Ki Raat (From Stree 2)", artist: "Sachin-Jigar, Madhubanti Bagchi", uri: "spotify:track:5IIoQg5A7agXCksmdRLX7i" },
+    { title: "Aayi Nai (From Stree 2)", artist: "Sachin-Jigar, Pawan Singh, Simran Choudhary", uri: "spotify:track:5a8QSQYfM5CM4DtDmcuceI" },
+    { title: "Garmi", artist: "Badshah, Neha Kakkar, Varun Dhawan", uri: "spotify:track:0dRRD41kOiDQQm0eivdbUr" },
+    { title: "O Saki Saki", artist: "Neha Kakkar, Tulsi Kumar, B Praak", uri: "spotify:track:5fLegzfBOGFQcRGU5jgJGJ" },
+    { title: "Party All Night", artist: "Yo Yo Honey Singh", uri: "spotify:track:0wEgK7RKkB1R6sR5Nrwh5g" },
+    { title: "Sheila Ki Jawani", artist: "Sunidhi Chauhan, Vishal Dadlani", uri: "spotify:track:412poAqbwD8OC0dYD1nBkV" },
+    { title: "Munni Badnaam", artist: "Mamta Sharma, Aishwarya Nigam", uri: "spotify:track:3W1XPf7mvuQcWQB7U7MbTM" },
+    { title: "Chikni Chameli", artist: "Shreya Ghoshal, Ajay-Atul", uri: "spotify:track:5MxiAxvsFQIr8JZi8XRntN" },
+    { title: "Afghan Jalebi (Film Version)", artist: "Pritam, Asrar", uri: "spotify:track:6fORBVECjNDJ1gdq5uuoAz" },
+    { title: "Baby Doll", artist: "Meet Bros Anjjan, Kanika Kapoor", uri: "spotify:track:1r4oikmMdZZiGHkPA4hSoe" }
 ];
 
 // ===== DOM ELEMENTS =====
-const audio = document.getElementById('audioPlayer');
 const songTitle = document.getElementById('songTitle');
 const songArtist = document.getElementById('songArtist');
 const timeLabel = document.getElementById('timeLabel');
@@ -118,66 +30,96 @@ const iconPause = document.getElementById('iconPause');
 // ===== STATE =====
 let currentIndex = 0;
 let isPlaying = false;
-let isSeeking = false;
+let embedController = null;
+let currentDuration = 240; // fallback in seconds
+let currentPosition = 0;
+let progressTimer = null;
 
-// ===== INITIALIZE =====
-function init() {
-    audio.volume = 0.85;
-    loadSong(0, false);
-    bindEvents();
-}
+// ===== INITIALIZE SPOTIFY IFRAME API =====
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+    const element = document.getElementById('spotify-embed-root');
+    const options = {
+        uri: 'spotify:playlist:1DatcBStkkmYNY6KKvPbv4',
+        width: 300,
+        height: 80
+    };
+    
+    IFrameAPI.createController(element, options, (controller) => {
+        embedController = controller;
+        console.log('Spotify Embed Controller Ready');
 
-// ===== LOAD SONG =====
-function loadSong(index, autoPlay = true) {
-    if (index < 0) index = SONGS.length - 1;
-    if (index >= SONGS.length) index = 0;
+        controller.addListener('playback_update', e => {
+            const data = e.data;
+            if (data) {
+                isPlaying = !data.isPaused;
+                updatePlayIcon();
+                if (data.duration) currentDuration = data.duration / 1000;
+                if (data.position !== undefined) {
+                    currentPosition = data.position / 1000;
+                    updateUIProgress(currentPosition, currentDuration);
+                }
+            }
+        });
+    });
+};
+
+// ===== LOAD TRACK =====
+function loadTrack(index, playImmediate = true) {
+    if (index < 0) index = PLAYLIST.length - 1;
+    if (index >= PLAYLIST.length) index = 0;
     currentIndex = index;
 
-    const track = SONGS[index];
+    const track = PLAYLIST[index];
     songTitle.textContent = track.title;
     songArtist.textContent = track.artist;
-    audio.src = `song/${encodeURIComponent(track.file)}`;
+    currentPosition = 0;
+    updateUIProgress(0, currentDuration);
 
-    progressFill.style.width = '0%';
-    progressDot.style.left = '0%';
-    timeLabel.textContent = '0:00 / 0:00';
-
-    if (autoPlay) {
-        audio.play().then(() => {
-            isPlaying = true;
-            updatePlayIcon();
-        }).catch(() => {
-            isPlaying = false;
-            updatePlayIcon();
-        });
-    }
-}
-
-// ===== TOGGLE PLAY / PAUSE =====
-function togglePlay() {
-    if (audio.paused) {
-        audio.play().then(() => {
-            isPlaying = true;
-            updatePlayIcon();
-        }).catch(err => console.log('Playback error:', err));
+    if (embedController) {
+        embedController.loadUri(track.uri);
+        if (playImmediate) {
+            setTimeout(() => {
+                embedController.play();
+                isPlaying = true;
+                updatePlayIcon();
+            }, 300);
+        }
     } else {
-        audio.pause();
-        isPlaying = false;
+        if (playImmediate) {
+            isPlaying = true;
+            updatePlayIcon();
+            startSimulatedProgress();
+        }
+    }
+}
+
+// ===== TOGGLE PLAY =====
+function togglePlay() {
+    if (embedController) {
+        embedController.togglePlay();
+    } else {
+        isPlaying = !isPlaying;
         updatePlayIcon();
+        if (isPlaying) {
+            startSimulatedProgress();
+        } else {
+            clearInterval(progressTimer);
+        }
     }
 }
 
-// ===== PREV / NEXT =====
-function playPrev() {
-    if (audio.currentTime > 3) {
-        audio.currentTime = 0;
-        return;
-    }
-    loadSong(currentIndex - 1, true);
-}
-
-function playNext() {
-    loadSong(currentIndex + 1, true);
+// ===== SIMULATED PROGRESS FOR LOCAL PREVIEW =====
+function startSimulatedProgress() {
+    clearInterval(progressTimer);
+    progressTimer = setInterval(() => {
+        if (!isPlaying) return;
+        currentPosition += 1;
+        if (currentPosition >= currentDuration) {
+            loadTrack(currentIndex + 1, true);
+        } else {
+            updateUIProgress(currentPosition, currentDuration);
+        }
+    }, 1000);
 }
 
 // ===== UI HELPERS =====
@@ -198,85 +140,39 @@ function formatTime(sec) {
     return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
-function updateTimeline() {
-    if (!audio.duration || isSeeking) return;
-    const cur = audio.currentTime || 0;
-    const dur = audio.duration || 0;
-    const pct = (cur / dur) * 100;
-    
+function updateUIProgress(pos, dur) {
+    const pct = dur > 0 ? (pos / dur) * 100 : 0;
     progressFill.style.width = `${pct}%`;
     progressDot.style.left = `${pct}%`;
-    timeLabel.textContent = `${formatTime(cur)} / ${formatTime(dur)}`;
+    timeLabel.textContent = `${formatTime(pos)} / ${formatTime(dur)}`;
 }
 
-// ===== SEEKING FUNCTIONALITY =====
+// ===== SEEK =====
 function seek(e) {
     const rect = progressBarWrap.getBoundingClientRect();
     const clientX = e.clientX ?? (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
     const offsetX = Math.max(0, Math.min(clientX - rect.left, rect.width));
     const pct = offsetX / rect.width;
+    const targetSeconds = pct * currentDuration;
 
-    if (audio.duration) {
-        audio.currentTime = pct * audio.duration;
-        progressFill.style.width = `${pct * 100}%`;
-        progressDot.style.left = `${pct * 100}%`;
-        timeLabel.textContent = `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+    currentPosition = targetSeconds;
+    updateUIProgress(currentPosition, currentDuration);
+
+    if (embedController) {
+        embedController.seek(Math.floor(targetSeconds));
     }
 }
 
 // ===== EVENT LISTENERS =====
-function bindEvents() {
+function init() {
+    loadTrack(0, false);
+
     btnPlay.addEventListener('click', togglePlay);
-    btnPrev.addEventListener('click', playPrev);
-    btnNext.addEventListener('click', playNext);
+    btnPrev.addEventListener('click', () => loadTrack(currentIndex - 1, true));
+    btnNext.addEventListener('click', () => loadTrack(currentIndex + 1, true));
 
-    audio.addEventListener('play', () => {
-        isPlaying = true;
-        updatePlayIcon();
-    });
-
-    audio.addEventListener('pause', () => {
-        isPlaying = false;
-        updatePlayIcon();
-    });
-
-    audio.addEventListener('timeupdate', updateTimeline);
-
-    audio.addEventListener('loadedmetadata', () => {
-        timeLabel.textContent = `0:00 / ${formatTime(audio.duration)}`;
-    });
-
-    audio.addEventListener('ended', () => {
-        playNext();
-    });
-
-    // Seek Drag & Click
-    progressBarWrap.addEventListener('mousedown', (e) => {
-        isSeeking = true;
-        seek(e);
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (isSeeking) seek(e);
-    });
-
-    document.addEventListener('mouseup', () => {
-        isSeeking = false;
-    });
-
-    // Touch Support for mobile
-    progressBarWrap.addEventListener('touchstart', (e) => {
-        isSeeking = true;
-        seek(e);
-    }, { passive: true });
-
-    progressBarWrap.addEventListener('touchmove', (e) => {
-        if (isSeeking) seek(e);
-    }, { passive: true });
-
-    progressBarWrap.addEventListener('touchend', () => {
-        isSeeking = false;
-    });
+    // Seek Click
+    progressBarWrap.addEventListener('click', seek);
 
     // Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
@@ -288,21 +184,20 @@ function bindEvents() {
                 break;
             case 'ArrowRight':
                 e.preventDefault();
-                if (audio.duration) audio.currentTime = Math.min(audio.currentTime + 5, audio.duration);
+                if (embedController) embedController.seek(Math.floor(currentPosition + 5));
                 break;
             case 'ArrowLeft':
                 e.preventDefault();
-                audio.currentTime = Math.max(audio.currentTime - 5, 0);
+                if (embedController) embedController.seek(Math.max(0, Math.floor(currentPosition - 5)));
                 break;
             case 'KeyN':
-                playNext();
+                loadTrack(currentIndex + 1, true);
                 break;
             case 'KeyP':
-                playPrev();
+                loadTrack(currentIndex - 1, true);
                 break;
         }
     });
 }
 
-// ===== START ON DOM LOAD =====
 document.addEventListener('DOMContentLoaded', init);
