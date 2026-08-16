@@ -142,7 +142,7 @@ function init() {
     initOnlineCounter();
 }
 
-// ===== LIVE CLOCK (saloon.wtf style: "7 54 pm") =====
+// ===== LIVE CLOCK (format: "1:33 am") =====
 function updateClock() {
     const topClock = document.getElementById('topClock');
     if (!topClock) return;
@@ -152,7 +152,7 @@ function updateClock() {
     hours = hours % 12;
     hours = hours ? hours : 12;
     const minutes = now.getMinutes().toString().padStart(2, '0');
-    topClock.textContent = `${hours} ${minutes} ${ampm}`;
+    topClock.textContent = `${hours}:${minutes} ${ampm}`;
 }
 
 // ===== LIVE ONLINE USER COUNTER SIMULATION =====
