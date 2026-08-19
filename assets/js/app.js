@@ -36,7 +36,7 @@ const PLAYLIST = [
     { title: "Dilliwaali Girlfriend", artist: "Arijit Singh, Sunidhi Chauhan", file: "Dilliwaali Girlfriend_spotdown.org.mp3", cover: "assets/images/covers/dilliwaali_girlfriend.jpg" },
     { title: "Dj Waley Babu", artist: "Badshah, Aastha Gill", file: "Dj Waley Babu (feat. Aastha Gill)_spotdown.org.mp3", cover: "assets/images/covers/dj_waley_babu__feat__aastha_gill.jpg" },
     { title: "Do Dhaari Talwaar", artist: "Shahid Mallya, Shweta Pandit", file: "Do Dhaari Talwaar_spotdown.org.mp3", cover: "assets/images/covers/do_dhaari_talwaar.jpg" },
-    { title: "Do You Know", artist: "Diljit Dosanjh", file: "Do U Know_spotdown.org.mp3", cover: "assets/images/covers/do_u_know.jpg" },
+    { title: "Do U Know", artist: "Shaan , Shreya Choshal", file: "Do U Know_spotdown.org.mp3", cover: "assets/images/covers/do_u_know.jpg" },
     { title: "Drama Queen", artist: "Shreya Ghoshal, Vishal Dadlani", file: "Drama Queen_spotdown.org.mp3", cover: "assets/images/covers/drama_queen.jpg" },
     { title: "Dreamum Wakeupum", artist: "Sowmya Raoh", file: "Dreamum Wakeupum_spotdown.org.mp3", cover: "assets/images/covers/dreamum_wakeupum.jpg" },
     { title: "Enna Sona", artist: "Arijit Singh, A.R. Rahman", file: "Enna Sona_spotdown.org.mp3", cover: "assets/images/covers/enna_sona.jpg" },
@@ -133,19 +133,61 @@ let isPlaying = false;
 let isSeeking = false;
 let hudTimeout = null;
 
-// Initialize Shuffle Queue:
-// Track 0 is ALWAYS "Pink Lips" (PLAYLIST[0])
-// Remaining tracks (1..N) are purely randomized with Fisher-Yates shuffle
-function initShuffleQueue() {
-    const remaining = [];
-    for (let i = 1; i < PLAYLIST.length; i++) {
-        remaining.push(i);
-    }
-    for (let i = remaining.length - 1; i > 0; i--) {
+// Slow / emotional / romantic songs that should NEVER play early in the session
+const LATE_TRACK_KEYWORDS = [
+    'aadat',
+    'enna sona',
+    'toh phir aao',
+    'toh fir aao',
+    'tera mera rishta',
+    'woh lamhe',
+    'jugraafiya',
+    'jugraaf'
+];
+
+function isSlowTrack(track) {
+    if (!track) return false;
+    const title = (track.title || '').toLowerCase();
+    const file = (track.file || '').toLowerCase();
+    return LATE_TRACK_KEYWORDS.some(kw => title.includes(kw) || file.includes(kw));
+}
+
+function shuffleArray(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
+        [a[i], a[j]] = [a[j], a[i]];
     }
-    playbackQueue = [0, ...remaining];
+    return a;
+}
+
+// Build Smart Queue:
+// - Position 0 is ALWAYS "Pink Lips" (PLAYLIST[0]) or the current active track
+// - Positions 1 to ~93 are pure randomized spicy/upbeat party & dance bangers
+// - Slow/sad tracks (Aadat, Enna Sona, Toh Phir Aao, Tera Mera Rishta, Woh Lamhe, Jugraafiya, etc.)
+//   are guaranteed NEVER to play early and are placed only at the very end of the playlist
+function buildSmartQueue(firstIndex = 0) {
+    const upbeatIndices = [];
+    const slowIndices = [];
+
+    for (let i = 0; i < PLAYLIST.length; i++) {
+        if (i === firstIndex) continue;
+        if (isSlowTrack(PLAYLIST[i])) {
+            slowIndices.push(i);
+        } else {
+            upbeatIndices.push(i);
+        }
+    }
+
+    const shuffledUpbeat = shuffleArray(upbeatIndices);
+    const shuffledSlow = shuffleArray(slowIndices);
+
+    return [firstIndex, ...shuffledUpbeat, ...shuffledSlow];
+}
+
+// Initialize Shuffle Queue:
+function initShuffleQueue() {
+    playbackQueue = buildSmartQueue(0);
     queueIndex = 0;
 }
 
@@ -220,14 +262,10 @@ function loadQueueTrack(pos, autoPlay = true, showHud = true) {
     if (playbackQueue.length === 0) initShuffleQueue();
 
     if (pos >= playbackQueue.length) {
-        // Continuous looped shuffle
-        const allIndices = Array.from({ length: PLAYLIST.length }, (_, i) => i);
-        for (let i = allIndices.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [allIndices[i], allIndices[j]] = [allIndices[j], allIndices[i]];
-        }
-        playbackQueue = allIndices;
-        pos = 0;
+        // Continuous looped smart shuffle
+        const curIndex = playbackQueue[queueIndex] ?? 0;
+        playbackQueue = buildSmartQueue(curIndex);
+        pos = 1;
     } else if (pos < 0) {
         pos = playbackQueue.length - 1;
     }
@@ -251,15 +289,7 @@ function playPrevTrack() {
 // ===== RESHUFFLE =====
 function reshuffleAndPlay() {
     const curIndex = playbackQueue[queueIndex] ?? 0;
-    const remaining = [];
-    for (let i = 0; i < PLAYLIST.length; i++) {
-        if (i !== curIndex) remaining.push(i);
-    }
-    for (let i = remaining.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [remaining[i], remaining[j]] = [remaining[j], remaining[i]];
-    }
-    playbackQueue = [curIndex, ...remaining];
+    playbackQueue = buildSmartQueue(curIndex);
     queueIndex = 0;
     showHUD('🔀', 'Shuffled');
     playNextTrack();
