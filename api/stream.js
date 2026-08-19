@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   if (req.method === 'OPTIONS') {
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Failed to generate stream token' });
     }
 
-    // Cache on Vercel CDN Edge for 12 hours
+    // Cache on Vercel Edge for 12 hours
     res.setHeader('Cache-Control', 'public, s-maxage=43200, max-age=43200');
     return res.status(200).json({
       success: true,
@@ -61,4 +61,4 @@ export default async function handler(req, res) {
     console.error('Stream resolver error:', err);
     return res.status(500).json({ error: err.message });
   }
-}
+};
