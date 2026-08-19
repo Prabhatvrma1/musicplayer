@@ -24,7 +24,6 @@ const PLAYLIST = [
     { title: "Ang Laga De", artist: "Shreya Ghoshal, Osman Mir", file: "Ang Laga De_spotdown.org.mp3", cover: "assets/images/covers/ang_laga_de.jpg" },
     { title: "Angreji Beat", artist: "Yo Yo Honey Singh, Gippy Grewal", file: "Angreji Beat_spotdown.org.mp3", cover: "assets/images/covers/angreji_beat.jpg" },
     { title: "Babli Badmaash", artist: "Sunidhi Chauhan", file: "Babli Badmaash_spotdown.org.mp3", cover: "assets/images/covers/babli_badmaash.jpg" },
-    { title: "Bairan", artist: "Diler Kharkiya", file: "Bairan_spotdown.org.mp3", cover: "assets/images/covers/bairan.jpg" },
     { title: "Balma", artist: "Sreerama Chandra, Shreya Ghoshal", file: "Balma_spotdown.org.mp3", cover: "assets/images/covers/balma.jpg" },
     { title: "Beedi", artist: "Sunidhi Chauhan, Sukhwinder Singh", file: "Beedi_spotdown.org.mp3", cover: "assets/images/covers/beedi.jpg" },
     { title: "Billo Rani", artist: "Anand Raj Anand, Richa Sharma", file: "Billo Rani_spotdown.org.mp3", cover: "assets/images/covers/billo_rani.jpg" },
