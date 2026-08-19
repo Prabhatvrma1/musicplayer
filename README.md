@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌶️ चटपटे गाने (Chatpate Gaane)
+# चटपटे गाने (Chatpate Gaane)
 ### *A Retro-Indian Aesthetic, Smart-Shuffled Bollywood Web Music Player*
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-chatpategane.vercel.app-brightgreen?style=for-the-badge&logo=vercel)](https://chatpategane.vercel.app)
