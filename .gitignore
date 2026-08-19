@@ -13,3 +13,7 @@ node_modules/
 # Scratch & Temporary
 scratch/
 *.tmp
+*.py
+
+# Large media assets (now streamed dynamically via CDN)
+assets/audio/
