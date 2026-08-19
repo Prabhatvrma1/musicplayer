@@ -25,7 +25,7 @@ export class StreamService {
         }
 
         try {
-            const resp = await fetch(`/api/stream?query=${encodeURIComponent(cacheKey)}`);
+            const resp = await fetch(`/api/stream?query=${encodeURIComponent(cacheKey)}&_t=${Date.now()}`);
             if (resp.ok) {
                 const data = await resp.json();
                 if (data.streamUrl) {

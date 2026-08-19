@@ -57,8 +57,8 @@ module.exports = async (req, res) => {
       directStreamUrl = authData.auth_url.split('?')[0].replace('https://ac.cf.saavncdn.com', 'https://aac.saavncdn.com');
     }
 
-    // Cache on Vercel Edge for 24 hours
-    res.setHeader('Cache-Control', 'public, s-maxage=86400, max-age=86400');
+    // Prevent edge and browser caching of stale signatures
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
     return res.status(200).json({
       success: true,
       title: song.title || songObj.song,
