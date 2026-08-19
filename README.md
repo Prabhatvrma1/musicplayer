@@ -70,20 +70,28 @@ The player features comprehensive keyboard shortcuts with on-screen Heads-Up Dis
 ```text
 chatpategane/
 ├── api/
-│   └── stream.js             # Vercel Serverless Function (320kbps CDN stream resolver)
+│   └── stream.js                 # Vercel Serverless Function (320kbps CDN stream resolver)
 ├── assets/
 │   ├── css/
-│   │   └── style.css         # Glassmorphism, animations, responsive layouts & typography
+│   │   └── style.css             # Glassmorphism, animations, responsive layouts & typography
 │   ├── js/
-│   │   └── app.js           # Playback controller, smart shuffle engine & keyboard events
-│   ├── images/
-│   │   ├── desk.jpg          # High-resolution wide landscape desktop scene
-│   │   ├── phone.png         # Balanced portrait mobile background scene
-│   │   ├── panipuri.png      # Favicon and core brand asset
-│   │   └── covers/           # High-resolution 500x500 album art covers
-│   └── audio/                # Offline high-fidelity local master tracks
-├── index.html                # Semantic HTML5 app markup with SEO & OpenGraph tags
-├── vercel.json               # Serverless routing & deployment configuration
+│   │   ├── models/
+│   │   │   ├── playlist.data.js  # Curated Bollywood party & item song dataset
+│   │   │   └── queue.model.js    # Smart energy-aware queue & shuffle state machine
+│   │   ├── services/
+│   │   │   └── stream.service.js # Dynamic 320kbps stream resolver & prefetch cache
+│   │   ├── views/
+│   │   │   └── player.view.js    # UI rendering, animations, HUD toasts & live clock
+│   │   ├── controllers/
+│   │   │   └── player.controller.js # Playback coordinator, touch & keyboard shortcuts
+│   │   └── main.js               # Application bootstrap entry point
+│   └── images/
+│       ├── desk.jpg              # High-resolution wide landscape desktop scene
+│       ├── phone.png             # Balanced portrait mobile background scene
+│       ├── panipuri.png          # Favicon and core brand asset
+│       └── covers/               # High-resolution 500x500 album art covers
+├── index.html                    # Semantic HTML5 app markup with SEO & OpenGraph tags
+├── vercel.json                   # Serverless routing & deployment configuration
 ├── .gitignore
 └── README.md
 ```
