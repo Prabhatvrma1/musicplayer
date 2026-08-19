@@ -1,6 +1,7 @@
 // ===== COMPLETE PLAYLIST DATA (FULL LENGTH BANGERS) =====
 const PLAYLIST = [
     { title: "Pink Lips", artist: "Meet Bros Anjjan, Khushboo Grewal", file: "Pink Lips_spotdown.org.mp3", cover: "assets/images/covers/pink_lips.jpg" },
+    { title: "Chittiyaan Kalaiyaan", artist: "Meet Bros Anjjan, Kanika Kapoor", file: "Chittiyaan Kalaiyaan_spotdown.org.mp3", cover: "assets/images/covers/chittiyaan_kalaiyaan.jpg" },
     { title: "Paani Waala Dance", artist: "Ikka, Arko, Shraddha Pandit", file: "Paani Waala Dance_spotdown.org.mp3", cover: "assets/images/covers/paani_waala_dance.jpg" },
     { title: "Aaj Ki Raat", artist: "Sachin-Jigar, Madhubanti Bagchi", file: "Aaj Ki Raat (From _Stree 2_)_spotdown.org.mp3", cover: "assets/images/covers/aaj_ki_raat__from__stree_2.jpg" },
     { title: "Aayi Nai", artist: "Sachin-Jigar, Pawan Singh, Simran Choudhary", file: "Aayi Nai (From _Stree 2_)_spotdown.org.mp3", cover: "assets/images/covers/aayi_nai__from__stree_2.jpg" },
@@ -142,9 +143,7 @@ const LATE_TRACK_KEYWORDS = [
     'tera mera rishta',
     'woh lamhe',
     'jugraafiya',
-    'jugraaf',
-    'Ang Laga De',
-
+    'jugraaf'
 ];
 
 function isSlowTrack(track) {
@@ -164,16 +163,22 @@ function shuffleArray(arr) {
 }
 
 // Build Smart Queue:
-// - Position 0 is ALWAYS "Pink Lips" (PLAYLIST[0]) or the current active track
-// - Positions 1 to ~93 are pure randomized spicy/upbeat party & dance bangers
+// - Position 0 is ALWAYS "Pink Lips" (PLAYLIST[0])
+// - Position 1 or 2 (2nd or 3rd song) is ALWAYS "Chittiyaan Kalaiyaan"
+// - Positions 2/3 to ~94 are pure randomized spicy/upbeat party & dance bangers
 // - Slow/sad tracks (Aadat, Enna Sona, Toh Phir Aao, Tera Mera Rishta, Woh Lamhe, Jugraafiya, etc.)
 //   are guaranteed NEVER to play early and are placed only at the very end of the playlist
 function buildSmartQueue(firstIndex = 0) {
     const upbeatIndices = [];
     const slowIndices = [];
+    let chittiyaanIndex = -1;
 
     for (let i = 0; i < PLAYLIST.length; i++) {
         if (i === firstIndex) continue;
+        if (PLAYLIST[i].title.toLowerCase().includes('chittiyaan kalaiyaan')) {
+            chittiyaanIndex = i;
+            continue;
+        }
         if (isSlowTrack(PLAYLIST[i])) {
             slowIndices.push(i);
         } else {
@@ -184,7 +189,25 @@ function buildSmartQueue(firstIndex = 0) {
     const shuffledUpbeat = shuffleArray(upbeatIndices);
     const shuffledSlow = shuffleArray(slowIndices);
 
-    return [firstIndex, ...shuffledUpbeat, ...shuffledSlow];
+    const queue = [firstIndex];
+
+    // Guarantee Chittiyaan Kalaiyaan at position 1 (2nd song) or position 2 (3rd song)
+    if (chittiyaanIndex !== -1 && chittiyaanIndex !== firstIndex) {
+        const targetPos = Math.random() < 0.5 ? 1 : 2;
+        if (targetPos === 1 || shuffledUpbeat.length === 0) {
+            queue.push(chittiyaanIndex);
+            queue.push(...shuffledUpbeat);
+        } else {
+            queue.push(shuffledUpbeat[0]);
+            queue.push(chittiyaanIndex);
+            queue.push(...shuffledUpbeat.slice(1));
+        }
+    } else {
+        queue.push(...shuffledUpbeat);
+    }
+
+    queue.push(...shuffledSlow);
+    return queue;
 }
 
 // Initialize Shuffle Queue:
