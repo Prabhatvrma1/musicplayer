@@ -142,7 +142,9 @@ const LATE_TRACK_KEYWORDS = [
     'tera mera rishta',
     'woh lamhe',
     'jugraafiya',
-    'jugraaf'
+    'jugraaf',
+    'Ang Laga De',
+
 ];
 
 function isSlowTrack(track) {
