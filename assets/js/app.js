@@ -36,7 +36,6 @@ const PLAYLIST = [
     { title: "Dilbara", artist: "Parampara Tandon, Sachet Tandon", file: "Dilbara_spotdown.org.mp3", cover: "assets/images/covers/dilbara.jpg" },
     { title: "Dilliwaali Girlfriend", artist: "Arijit Singh, Sunidhi Chauhan", file: "Dilliwaali Girlfriend_spotdown.org.mp3", cover: "assets/images/covers/dilliwaali_girlfriend.jpg" },
     { title: "Dj Waley Babu", artist: "Badshah, Aastha Gill", file: "Dj Waley Babu (feat. Aastha Gill)_spotdown.org.mp3", cover: "assets/images/covers/dj_waley_babu__feat__aastha_gill.jpg" },
-    { title: "Do Dhaari Talwaar", artist: "Shahid Mallya, Shweta Pandit", file: "Do Dhaari Talwaar_spotdown.org.mp3", cover: "assets/images/covers/do_dhaari_talwaar.jpg" },
     { title: "Do U Know", artist: "Shaan , Shreya Choshal", file: "Do U Know_spotdown.org.mp3", cover: "assets/images/covers/do_u_know.jpg" },
     { title: "Drama Queen", artist: "Shreya Ghoshal, Vishal Dadlani", file: "Drama Queen_spotdown.org.mp3", cover: "assets/images/covers/drama_queen.jpg" },
     { title: "Dreamum Wakeupum", artist: "Sowmya Raoh", file: "Dreamum Wakeupum_spotdown.org.mp3", cover: "assets/images/covers/dreamum_wakeupum.jpg" },
@@ -47,7 +46,6 @@ const PLAYLIST = [
     { title: "Gucci", artist: "Aroob Khan", file: "Gucci_spotdown.org.mp3", cover: "assets/images/covers/gucci.jpg" },
     { title: "Gulaabo", artist: "Vishal Dadlani, Anusha Mani", file: "Gulaabo_spotdown.org.mp3", cover: "assets/images/covers/gulaabo.jpg" },
     { title: "Gypsy", artist: "Pranjal Dahiya, GD Kaur", file: "Gypsy (feat. Pranjal Dahiya )_spotdown.org.mp3", cover: "assets/images/covers/gypsy__feat__pranjal_dahiya.jpg" },
-    { title: "Hai Rama", artist: "Hariharan, Swarnalatha", file: "Hai Rama_spotdown.org.mp3", cover: "assets/images/covers/hai_rama.jpg" },
     { title: "Halkat Jawani", artist: "Sunidhi Chauhan", file: "Halkat Jawani_spotdown.org.mp3", cover: "assets/images/covers/halkat_jawani.jpg" },
     { title: "Hoth Rasiley", artist: "Pritam, Shankar Mahadevan", file: "Hoth Rasiley_spotdown.org.mp3", cover: "assets/images/covers/hoth_rasiley.jpg" },
     { title: "Jadoo Ki Jhappi", artist: "Mika Singh, Neha Kakkar", file: "Jadoo Ki Jhappi_spotdown.org.mp3", cover: "assets/images/covers/jadoo_ki_jhappi.jpg" },
@@ -57,7 +55,6 @@ const PLAYLIST = [
     { title: "Kamli", artist: "Sunidhi Chauhan", file: "Kamli_spotdown.org.mp3", cover: "assets/images/covers/kamli.jpg" },
     { title: "Kiya Kiya", artist: "Anand Raj Anand", file: "Kiya Kiya_spotdown.org.mp3", cover: "assets/images/covers/kiya_kiya.jpg" },
     { title: "Laal Pari", artist: "Yo Yo Honey Singh", file: "Laal Pari (From _Housefull 5_)_spotdown.org.mp3", cover: "assets/images/covers/laal_pari__from__housefull_5.jpg" },
-    { title: "Lahu Munh Lag Gaya", artist: "Shail Hada", file: "Lahu Munh Lag Gaya_spotdown.org.mp3", cover: "assets/images/covers/lahu_munh_lag_gaya.jpg" },
     { title: "Laila Main Laila", artist: "Pawni Pandey", file: "Laila Main Laila_spotdown.org.mp3", cover: "assets/images/covers/laila_main_laila.jpg" },
     { title: "Laila", artist: "Sunidhi Chauhan", file: "Laila_spotdown.org.mp3", cover: "assets/images/covers/laila.jpg" },
     { title: "Lat Lag Gayee", artist: "Benny Dayal, Shalmali Kholgade", file: "Lat Lag Gayee_spotdown.org.mp3", cover: "assets/images/covers/lat_lag_gayee.jpg" },
@@ -65,8 +62,6 @@ const PLAYLIST = [
     { title: "Le Le Mazaa Le", artist: "Soumya Rao", file: "Le Le Mazaa Le_spotdown.org.mp3", cover: "assets/images/covers/le_le_mazaa_le.jpg" },
     { title: "Love Dose", artist: "Yo Yo Honey Singh", file: "Love Dose_spotdown.org.mp3", cover: "assets/images/covers/love_dose.jpg" },
     { title: "Main Badhiya Tu Bhi Badhiya", artist: "Sonu Nigam, Sunidhi Chauhan", file: "Main Badhiya Tu Bhi Badhiya (From _Sanju_)_spotdown.org.mp3", cover: "assets/images/covers/main_badhiya_tu_bhi_badhiya__from__sanju.jpg" },
-    { title: "Mayya Mayya", artist: "Maryem Tollar, Chinmayi", file: "Mayya Mayya_spotdown.org.mp3", cover: "assets/images/covers/mayya_mayya.jpg" },
-    { title: "Mayya", artist: "A.R. Rahman", file: "Mayya_spotdown.org.mp3", cover: "assets/images/covers/mayya.jpg" },
     { title: "Mera Naam Mary", artist: "Chinmayi Sripada", file: "Mera Naam Mary (From _Brothers_)_spotdown.org.mp3", cover: "assets/images/covers/mera_naam_mary__from__brothers.jpg" },
     { title: "Milegi Milegi", artist: "Mika Singh, Sachin-Jigar", file: "Milegi Milegi (From _Stree_)_spotdown.org.mp3", cover: "assets/images/covers/milegi_milegi__from__stree.jpg" },
     { title: "Oh Girl You're Mine", artist: "Loy Mendonsa, Tarannum Mallik", file: "Oh Girl You're Mine ._spotdown.org.mp3", cover: "assets/images/covers/oh_girl_you_re_mine.jpg" },
@@ -83,7 +78,6 @@ const PLAYLIST = [
     { title: "Sheesha", artist: "Diler Kharkiya", file: "Sheesha - Aakhya Mai Aakh Ghali Jo Bairan_spotdown.org.mp3", cover: "assets/images/covers/sheesha_-_aakhya_mai_aakh_ghali_jo_bairan.jpg" },
     { title: "Shuddh Desi Romance", artist: "Benny Dayal, Shalmali Kholgade", file: "Shuddh Desi Romance_spotdown.org.mp3", cover: "assets/images/covers/shuddh_desi_romance.jpg" },
     { title: "Taras", artist: "Jasmine Sandlas, Sachin-Jigar", file: "Taras - From _Munjya__spotdown.org.mp3", cover: "assets/images/covers/taras_-_from__munjya.jpg" },
-    { title: "Tattoo", artist: "Yo Yo Honey Singh", file: "Tattoo_spotdown.org.mp3", cover: "assets/images/covers/tattoo.jpg" },
     { title: "Tera Mera Rishta", artist: "Mustafa Zahid", file: "Tera Mera Rishta - Original Version_spotdown.org.mp3", cover: "assets/images/covers/tera_mera_rishta_-_original_version.jpg" },
     { title: "Thumkeshwari", artist: "Ash King, Rashmeet Kaur, Sachin-Jigar", file: "Thumkeshwari_spotdown.org.mp3", cover: "assets/images/covers/thumkeshwari.jpg" },
     { title: "Tinku Jiya", artist: "Mamta Sharma, Javed Ali", file: "Tinku Jiya_spotdown.org.mp3", cover: "assets/images/covers/tinku_jiya.jpg" },
@@ -98,7 +92,6 @@ const PLAYLIST = [
     { title: "Vele", artist: "Vishal Dadlani, Shekhar Ravjiani", file: "Vele_spotdown.org.mp3", cover: "assets/images/covers/vele.jpg" },
     { title: "Wakhra Swag", artist: "Navv Inder, Badshah", file: "Wakhra Swag_spotdown.org.mp3", cover: "assets/images/covers/wakhra_swag.jpg" },
     { title: "Woh Lamhe Woh Baatein", artist: "Atif Aslam", file: "Woh Lamhe Woh Baatein_spotdown.org.mp3", cover: "assets/images/covers/woh_lamhe_woh_baatein.jpg" },
-    { title: "Yeh Mera Dil", artist: "Asha Bhosle", file: "Yeh Mera Dil - Don 78 - Compilation - Yeh Mera Dil - Dance Mix_spotdown.org.mp3", cover: "assets/images/covers/yeh_mera_dil_-_don_78_-_compilation_-_yeh_mera_dil_-_dance_mix.jpg" },
     { title: "Zara Zara Touch Me", artist: "Monali Thakur", file: "Zara Zara Touch Me_spotdown.org.mp3", cover: "assets/images/covers/zara_zara_touch_me.jpg" }
 ];
 
