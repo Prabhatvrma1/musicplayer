@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
     const encUrl = songObj.encrypted_media_url;
     const cover = (songObj.image || song.image || '').replace('150x150', '500x500').replace('50x50', '500x500');
 
-    // Step 3: Generate 320kbps Auth URL
+    // Step 3: Generate Auth URL
     const authUrl = `https://www.jiosaavn.com/api.php?__call=song.generateAuthToken&_format=json&_marker=0&cc=in&url=${encodeURIComponent(encUrl)}&bitrate=320`;
     const authResp = await fetch(authUrl, { headers });
     const authData = await authResp.json();
@@ -48,14 +48,23 @@ module.exports = async (req, res) => {
       return res.status(500).json({ error: 'Failed to generate stream token' });
     }
 
-    // Cache on Vercel Edge for 12 hours
-    res.setHeader('Cache-Control', 'public, s-maxage=43200, max-age=43200');
+    // Convert to direct open Akamai stream URL (bypasses Cloudflare hotlinking restrictions)
+    let directStreamUrl = authData.auth_url;
+    try {
+      const parsed = new URL(authData.auth_url);
+      directStreamUrl = `https://aac.saavncdn.com${parsed.pathname}`;
+    } catch (e) {
+      directStreamUrl = authData.auth_url.split('?')[0].replace('https://ac.cf.saavncdn.com', 'https://aac.saavncdn.com');
+    }
+
+    // Cache on Vercel Edge for 24 hours
+    res.setHeader('Cache-Control', 'public, s-maxage=86400, max-age=86400');
     return res.status(200).json({
       success: true,
       title: song.title || songObj.song,
       artist: songObj.primary_artists || song.description || '',
       cover: cover,
-      streamUrl: authData.auth_url
+      streamUrl: directStreamUrl
     });
   } catch (err) {
     console.error('Stream resolver error:', err);
