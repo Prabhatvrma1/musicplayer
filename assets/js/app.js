@@ -156,20 +156,27 @@ function shuffleArray(arr) {
 }
 
 // Build Smart Queue:
-// - Position 0 is ALWAYS "Pink Lips" (PLAYLIST[0])
+// - Position 0 (1st song) is ALWAYS "Pink Lips" (PLAYLIST[0])
 // - Position 1 or 2 (2nd or 3rd song) is ALWAYS "Chittiyaan Kalaiyaan"
-// - Positions 2/3 to ~94 are pure randomized spicy/upbeat party & dance bangers
+// - Position 2, 3, or 4 (3rd, 4th, or 5th song) is ALWAYS "Baby Doll"
+// - Positions 5 to ~87 are pure randomized spicy/upbeat party & dance bangers
 // - Slow/sad tracks (Aadat, Enna Sona, Toh Phir Aao, Tera Mera Rishta, Woh Lamhe, Jugraafiya, etc.)
 //   are guaranteed NEVER to play early and are placed only at the very end of the playlist
 function buildSmartQueue(firstIndex = 0) {
     const upbeatIndices = [];
     const slowIndices = [];
     let chittiyaanIndex = -1;
+    let babyDollIndex = -1;
 
     for (let i = 0; i < PLAYLIST.length; i++) {
         if (i === firstIndex) continue;
-        if (PLAYLIST[i].title.toLowerCase().includes('chittiyaan kalaiyaan')) {
+        const titleLower = PLAYLIST[i].title.toLowerCase();
+        if (titleLower.includes('chittiyaan kalaiyaan')) {
             chittiyaanIndex = i;
+            continue;
+        }
+        if (titleLower.includes('baby doll')) {
+            babyDollIndex = i;
             continue;
         }
         if (isSlowTrack(PLAYLIST[i])) {
@@ -182,25 +189,37 @@ function buildSmartQueue(firstIndex = 0) {
     const shuffledUpbeat = shuffleArray(upbeatIndices);
     const shuffledSlow = shuffleArray(slowIndices);
 
-    const queue = [firstIndex];
+    // Slots for the top 5 songs [pos 0, pos 1, pos 2, pos 3, pos 4]
+    const topSlots = [null, null, null, null, null];
+    topSlots[0] = firstIndex; // Pink Lips always first
 
-    // Guarantee Chittiyaan Kalaiyaan at position 1 (2nd song) or position 2 (3rd song)
+    // Place Chittiyaan Kalaiyaan at position 1 (2nd song) or position 2 (3rd song)
+    const chittiyaanPos = Math.random() < 0.5 ? 1 : 2;
     if (chittiyaanIndex !== -1 && chittiyaanIndex !== firstIndex) {
-        const targetPos = Math.random() < 0.5 ? 1 : 2;
-        if (targetPos === 1 || shuffledUpbeat.length === 0) {
-            queue.push(chittiyaanIndex);
-            queue.push(...shuffledUpbeat);
-        } else {
-            queue.push(shuffledUpbeat[0]);
-            queue.push(chittiyaanIndex);
-            queue.push(...shuffledUpbeat.slice(1));
-        }
-    } else {
-        queue.push(...shuffledUpbeat);
+        topSlots[chittiyaanPos] = chittiyaanIndex;
     }
 
-    queue.push(...shuffledSlow);
-    return queue;
+    // Place Baby Doll randomly at position 2, 3, or 4 (3rd, 4th, or 5th song)
+    const candidateSlots = [2, 3, 4].filter(idx => topSlots[idx] === null);
+    if (babyDollIndex !== -1 && babyDollIndex !== firstIndex && candidateSlots.length > 0) {
+        const chosenSlot = candidateSlots[Math.floor(Math.random() * candidateSlots.length)];
+        topSlots[chosenSlot] = babyDollIndex;
+    }
+
+    // Fill remaining top slots with shuffled upbeat picks
+    const topPicks = shuffledUpbeat.slice(0, 4);
+    const restUpbeat = shuffledUpbeat.slice(4);
+    let pickIdx = 0;
+    for (let s = 1; s < topSlots.length; s++) {
+        if (topSlots[s] === null) {
+            topSlots[s] = topPicks[pickIdx++];
+        }
+    }
+
+    const validTop = topSlots.filter(x => x !== null && x !== undefined);
+    const remainingPicks = topPicks.slice(pickIdx);
+
+    return [...validTop, ...remainingPicks, ...restUpbeat, ...shuffledSlow];
 }
 
 // Initialize Shuffle Queue:
