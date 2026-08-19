@@ -24,21 +24,23 @@ export class StreamService {
             return this.cache.get(cacheKey);
         }
 
-        // Direct same-origin audio proxy URL (100% reliable across all browsers & mobile)
-        const audioUrl = `/api/audio?query=${encodeURIComponent(cacheKey)}`;
-        this.cache.set(cacheKey, audioUrl);
-
-        // Fetch cover art in background if not already present
-        if (!track.cover || track.cover === '') {
-            fetch(`/api/stream?query=${encodeURIComponent(cacheKey)}`)
-                .then(r => r.json())
-                .then(data => {
-                    if (data?.cover) track.cover = data.cover;
-                })
-                .catch(() => {});
+        try {
+            const resp = await fetch(`/api/stream?query=${encodeURIComponent(cacheKey)}`);
+            if (resp.ok) {
+                const data = await resp.json();
+                if (data.streamUrl) {
+                    this.cache.set(cacheKey, data.streamUrl);
+                    if (data.cover) {
+                        track.cover = data.cover;
+                    }
+                    return data.streamUrl;
+                }
+            }
+        } catch (err) {
+            console.warn(`[StreamService] Stream resolution fallback for "${track.title}":`, err);
         }
 
-        return audioUrl;
+        return '';
     }
 
     /**
