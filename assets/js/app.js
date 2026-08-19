@@ -252,8 +252,52 @@ function initOnlineCounter() {
     }, 12000);
 }
 
+// ===== DYNAMIC STREAMING & RESOLVER CACHE =====
+const streamCache = new Map();
+
+async function resolveTrackAudio(track) {
+    if (!track) return '';
+    if (track.streamUrl) return track.streamUrl;
+    if (track.file && !track.file.startsWith('http')) {
+        return `assets/audio/${encodeURIComponent(track.file)}`;
+    }
+    if (track.file && track.file.startsWith('http')) {
+        return track.file;
+    }
+    const cacheKey = `${track.title} ${track.artist}`.trim();
+    if (streamCache.has(cacheKey)) {
+        return streamCache.get(cacheKey);
+    }
+    try {
+        const resp = await fetch(`/api/stream?query=${encodeURIComponent(cacheKey)}`);
+        if (resp.ok) {
+            const data = await resp.json();
+            if (data.streamUrl) {
+                streamCache.set(cacheKey, data.streamUrl);
+                if (data.cover && (!track.cover || track.cover === '')) {
+                    track.cover = data.cover;
+                }
+                return data.streamUrl;
+            }
+        }
+    } catch (e) {
+        console.warn('Stream resolution fallback:', e);
+    }
+    return track.file ? `assets/audio/${encodeURIComponent(track.file)}` : '';
+}
+
+function prefetchNextTrack() {
+    const nextQueuePos = queueIndex + 1;
+    if (nextQueuePos < playbackQueue.length) {
+        const nextTrack = PLAYLIST[playbackQueue[nextQueuePos]];
+        if (nextTrack && !nextTrack.file) {
+            resolveTrackAudio(nextTrack);
+        }
+    }
+}
+
 // ===== LOAD TRACK (BY PLAYLIST INDEX) =====
-function loadTrack(index, autoPlay = true, showHud = true) {
+async function loadTrack(index, autoPlay = true, showHud = true) {
     if (index < 0) index = PLAYLIST.length - 1;
     if (index >= PLAYLIST.length) index = 0;
 
@@ -261,7 +305,6 @@ function loadTrack(index, autoPlay = true, showHud = true) {
     songTitle.textContent = track.title;
     songArtist.textContent = track.artist;
     if (playerArtImg && track.cover) playerArtImg.src = track.cover;
-    audio.src = `assets/audio/${encodeURIComponent(track.file)}`;
 
     progressFill.style.width = '0%';
     progressDot.style.left = '0%';
@@ -271,10 +314,17 @@ function loadTrack(index, autoPlay = true, showHud = true) {
         showHUD('🎵', track.title);
     }
 
-    if (autoPlay) {
+    const audioUrl = await resolveTrackAudio(track);
+    if (playerArtImg && track.cover) playerArtImg.src = track.cover;
+    if (audioUrl) {
+        audio.src = audioUrl;
+    }
+
+    if (autoPlay && audio.src) {
         audio.play().then(() => {
             isPlaying = true;
             updatePlayIcon();
+            prefetchNextTrack();
         }).catch(() => {
             isPlaying = false;
             updatePlayIcon();
